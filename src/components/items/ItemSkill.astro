@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<div class='skill'>
+	<h2>Skills</h2>
+	<section>
+		<h3>JS</h3>
+
+		<div class='icon' tabindex='0'>
+			<Image src='/foxPlush.png' alt='Icon Picture' width='40' height='40' />
+		</div>
+
+		<div class='description active'>
+			<Image src='/foxPlush.png' alt='Icon Picture' width='30' height='30' />
+
+			<p>Description</p>
+		</div>
+	</section>
+</div>
+
+<style>
+	.skill {
+		z-index: 0;
+		isolation: isolate;
+	}
+	h2 {
+		font-size: 2rem;
+		text-align: center;
+	}
+	label {
+		font-size: 1.5rem;
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		border: 1px dotted green;
+	}
+
+	.icon {
+		border-radius: 1rem;
+		background-color: hsla(0, 0%, 68%, 0.8);
+		aspect-ratio: 1;
+		width: 40px;
+	}
+	
+	.description {
+		border-radius: 1rem;
+		background-color: hsla(0, 0%, 68%, 0.8);
+		padding: 0.7rem;
+	}
+
+	img {
+		max-width: 100%;
+		object-fit: contain;
+	}
+
+	section div:focus-within {
+		border: 2px solid red;
+	}
+</style>

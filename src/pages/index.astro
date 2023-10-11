@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import Item from '../components/items/Item.astro';
+import ItemLang from '../components/items/ItemLang.astro';
+import ItemSkill from '../components/items/ItemSkill.astro';
 ---
 
 <Layout>
@@ -12,11 +15,11 @@ import Header from '../components/Header.astro';
 		</section>
 		<section class='items'>
 			<article>
+				<ItemLang />
 			</article>
 
 			<article>
-			</article>
-			<article>
+				<ItemSkill />
 			</article>
 		</section>
 	</main>
