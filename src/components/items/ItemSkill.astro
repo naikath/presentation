@@ -1,7 +1,6 @@
 ---
-import { Image } from 'astro:assets';
-
-import skillItems from '../../data/skills/items.json'
+import skillItems from '../../data/skills/items.json';
+import Icon from './Icon.astro';
 
 // The skill name and descriptions are separated
 // This part is static and is run at build time
@@ -16,17 +15,7 @@ import skillItems from '../../data/skills/items.json'
 		<div class='icon-grid'>
 			{
 				skillItems.map(skill => {
-					return (
-						<div
-							class='icon'
-							data-id={skill.id}
-							data-name={skill.name}
-							data-img={skill.img}
-							tabindex='0'
-						>
-							<Image src={skill.img} alt={`${skill.name} icon`} width='60' height='60' />
-						</div>
-					);
+					return <Icon skill={skill} />;
 				})
 			}
 		</div>
@@ -34,7 +23,12 @@ import skillItems from '../../data/skills/items.json'
 
 	<div class='description active'>
 		<h3>
-			<img src='' alt='Icon' width='40' height='40' />
+			<img
+				src=''
+				alt='Icon'
+				width='40'
+				height='40'
+			/>
 			<p class='title'>Title</p>
 		</h3>
 		<p class='content'>Description</p>
@@ -74,26 +68,6 @@ import skillItems from '../../data/skills/items.json'
 		grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
 		justify-content: right;
 		gap: var(--spacing);
-	}
-
-	/* ICONS */
-
-	.icon {
-		border: 2px solid transparent;
-		border-radius: 1rem;
-		background-color: hsla(0, 0%, 68%, 0.8);
-		aspect-ratio: 1;
-		user-select: none;
-	}
-
-	.icon img {
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-	}
-
-	.icon:focus-within {
-		border-color: red;
 	}
 
 	/* DESCRIPTION */
