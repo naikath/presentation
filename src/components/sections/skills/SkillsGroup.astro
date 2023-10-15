@@ -1,14 +1,14 @@
 ---
-import skillsItems from '../../data/skills/items.json';
-import Icon from './Icon.astro';
+import skillsItemsData from '../../../data/skills/items.json';
+import SkillsIcon from './SkillsIcon.astro';
 ---
 
 <section class='skills__group'>
 	<h3>JS</h3>
 	<div class='skills__icon-grid'>
 		{
-			skillsItems.map(skill => {
-				return <Icon skill={skill} />;
+			skillsItemsData.map(skill => {
+				return <SkillsIcon skill={skill} />;
 			})
 		}
 	</div>

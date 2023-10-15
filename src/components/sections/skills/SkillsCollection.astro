@@ -1,6 +1,6 @@
 ---
-import ItemDescription from './ItemDescription.astro';
-import SkillsGroup from './SkillGroup.astro';
+import SkillsDescription from './SkillsDescription.astro';
+import SkillsGroup from './SkillsGroup.astro';
 
 // The skill name and descriptions are separated
 // This part is static and is run at build time
@@ -12,7 +12,7 @@ import SkillsGroup from './SkillGroup.astro';
 	<h2>Skills</h2>
 	<SkillsGroup />
 
-	<ItemDescription />
+	<SkillsDescription />
 </div>
 
 <style>
@@ -30,7 +30,7 @@ import SkillsGroup from './SkillGroup.astro';
 </style>
 
 <script>
-	import skillsDescriptionData from './../../data/skills/descriptions.json';
+	import skillsDescriptionData from './../../../data/skills/descriptions.json';
 
 	// add event listeners to the items
 	// so when clicked, they select the description and set the content to the description object of the list
