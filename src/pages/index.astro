@@ -1,54 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Item from '../components/items/Item.astro';
-import ItemLang from '../components/items/ItemLang.astro';
-import ItemSkill from '../components/items/ItemSkill.astro';
+import Description from '../components/sections/Description.astro';
+import ItemDisplay from '../components/sections/ItemDisplay.astro';
 ---
 
 <Layout>
 	<Header />
-
 	<main>
-		<section class='intro'>
-			<p> Description </p>
-		</section>
-		<section class='items'>
-			<article>
-				<ItemLang />
-			</article>
-
-			<article>
-				<ItemSkill />
-			</article>
-		</section>
+		<Description />
+		<ItemDisplay />
 	</main>
 </Layout>
 
-<style>
-
-	main section.items {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		grid-auto-rows: max-content;
-		align-items: start;
-		gap: 2rem;
-		padding: 2rem;
-	}
-
-	main section.items article {
-		z-index: 0;
-		backdrop-filter: blur(10px);
-		border: 1px solid white;
-		border-radius: 1rem;
-		/* background: linear-gradient(
-			15deg,
-			hsla(271, 76%, 53%, 0.9),
-			70%,
-			hsla(0, 100%, 50%, 0.9)
-		); */
-		background: hsla(271, 76%, 70%, 0.4);
-		padding: 1rem;
-		max-width: 400px;
-	}
-</style>
+<style></style>
