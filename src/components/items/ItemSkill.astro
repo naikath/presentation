@@ -1,7 +1,6 @@
 ---
-import skillItems from '../../data/skills/items.json';
-import Icon from './Icon.astro';
 import ItemDescription from './ItemDescription.astro';
+import SkillGroup from './SkillGroup.astro';
 
 // The skill name and descriptions are separated
 // This part is static and is run at build time
@@ -11,16 +10,7 @@ import ItemDescription from './ItemDescription.astro';
 
 <div class='card-skill'>
 	<h2>Skills</h2>
-	<section>
-		<h3>JS</h3>
-		<div class='icon-grid'>
-			{
-				skillItems.map(skill => {
-					return <Icon skill={skill} />;
-				})
-			}
-		</div>
-	</section>
+	<SkillGroup />
 
 	<ItemDescription />
 </div>
@@ -36,27 +26,6 @@ import ItemDescription from './ItemDescription.astro';
 
 	h2 {
 		font-size: 2rem;
-	}
-
-	/* SKILL SECTION */
-
-	section {
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing);
-		border: 3px dotted white;
-		padding: var(--spacing);
-	}
-
-	h3 {
-		font-size: 1.5rem;
-	}
-
-	.icon-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-		justify-content: right;
-		gap: var(--spacing);
 	}
 </style>
 
