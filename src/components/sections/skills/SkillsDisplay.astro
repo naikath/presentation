@@ -1,23 +1,23 @@
 ---
 import SkillsCollection from './SkillsCollection.astro';
 import SkillsDescription from './SkillsDescription.astro';
----
 
-<!--
-	Class Naming:
-	
-	.skills {
-		.skills__collection {
-			.skills__group {
-				.skills__icon-grid {
-					.skills__icon
-				}
+/*
+Class Naming:
+
+.skills {
+	.skills__collection {
+		.skills__group {
+			.skills__icon-grid {
+				.skills__icon
 			}
 		}
-		.skills__description {}
 	}
+	.skills__description {}
+}
+*/
+---
 
--->
 <section class='skills'>
 	<article>
 		<SkillsCollection />
@@ -31,8 +31,8 @@ import SkillsDescription from './SkillsDescription.astro';
 	section {
 		display: grid;
 		gap: 2rem;
-		@media (width > 600px) {
-			grid-template-columns: 3fr 1fr;
+		@media (width > 700px) {
+			grid-template-columns: 2fr 1fr;
 		}
 	}
 
@@ -44,7 +44,7 @@ import SkillsDescription from './SkillsDescription.astro';
 			hsla(0, 100%, 50%, 0.9)
 		);
 		--color-bg: hsla(271, 76%, 70%, 0.4);
-
+		position: relative;
 		border: 1px solid white;
 		border-radius: 1rem;
 		background: var(--color-bg);
