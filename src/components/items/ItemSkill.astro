@@ -1,29 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 
-type Item = {
-	id: number;
-	name: string;
-	img: string;
-};
-
-const skillItemList: Item[] = [
-	{
-		id: 1,
-		img: '/foxPlush.png',
-		name: 'JavaScript',
-	},
-	{
-		id: 2,
-		img: '/foxPlush.png',
-		name: 'TypeScript',
-	},
-	{
-		id: 3,
-		img: '/foxPlush.png',
-		name: 'NodeJS',
-	},
-];
+import skillItems from '../../data/skills/items.json'
 
 // The skill name and descriptions are separated
 // This part is static and is run at build time
@@ -37,7 +15,7 @@ const skillItemList: Item[] = [
 		<h3>JS</h3>
 		<div class='icon-grid'>
 			{
-				skillItemList.map(skill => {
+				skillItems.map(skill => {
 					return (
 						<div
 							class='icon'
@@ -162,25 +140,7 @@ const skillItemList: Item[] = [
 </style>
 
 <script>
-	type ItemDescription = {
-		id: number;
-		description: string;
-	};
-
-	const descriptionList: ItemDescription[] = [
-		{
-			id: 1,
-			description: "I've been learning JavaScript for around a year",
-		},
-		{
-			id: 2,
-			description: "I've been learning TypeScript for half a year",
-		},
-		{
-			id: 3,
-			description: "I've been learning NodeJS for 3/4 of a year",
-		},
-	];
+	import skillDescriptions from './../../data/skills/descriptions.json';
 
 	// add event listeners to the items
 	// so when clicked, they select the description and set the content to the description object of the list
@@ -202,7 +162,7 @@ const skillItemList: Item[] = [
 
 	function getItemDesc(id: number | string) {
 		if (typeof id === 'string') id = Number.parseInt(id);
-		return descriptionList.find(skill => skill.id === id).description;
+		return skillDescriptions.find(skill => skill.id === id).description;
 	}
 
 	itemList.forEach(item => {
