@@ -33,6 +33,7 @@ import SkillsGroup from './SkillsGroup.astro';
 
 	const skillsIcons = document.querySelectorAll('.skills__icon') as NodeListOf<HTMLElement>;
 	const skillsDescription = document.querySelector('.skills__description') as HTMLElement;
+	const skillsDisplay = document.querySelector('.skills__display') as HTMLElement;
 
 	const descriptionElements = {
 		img: skillsDescription.querySelector('img') as HTMLImageElement,
@@ -42,7 +43,7 @@ import SkillsGroup from './SkillsGroup.astro';
 	};
 
 	descriptionElements.button.addEventListener('click', () => {
-		skillsDescription.classList.remove('show');
+		skillsDisplay.classList.remove('skills__display--show');
 	});
 
 	function getItemDesc(id: number | string) {
@@ -62,7 +63,7 @@ import SkillsGroup from './SkillsGroup.astro';
 			const dataDescription = getItemDesc(dataId);
 			content.innerText = dataDescription;
 
-			skillsDescription.classList.add('show');
+			skillsDisplay.classList.add('skills__display--show');
 		});
 	});
 </script>

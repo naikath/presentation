@@ -2,54 +2,86 @@
 
 ---
 
-<div class='skills__description'>
-	<h3>
-		<img
-			src=''
-			alt='Icon'
-			width='40'
-			height='40'
-		/>
-		<p class='title'>Title</p>
-	</h3>
-	<p class='content'>Description</p>
-	<button>×</button>
+<div class='skills__display'>
+	<article class='skills__explain'>
+		<h3>Explain</h3>
+		<p class='content'>Description</p>
+	</article>
+	<article class='skills__description'>
+		<h3>
+			<img
+				src=''
+				alt='Icon'
+				width='40'
+				height='40'
+			/>
+			<p class='title'>Title</p>
+		</h3>
+		<p class='content'>Description</p>
+		<button>×</button>
+	</article>
 </div>
 
 <style>
-	.skills__description {
-		display: none;
+	.skills__display {
+		--color-skills-display: hsla(231, 48%, 45%, 0.6);
 		position: relative;
+	}
+
+	article {
+		display: flex;
+		position: relative;
+		flex-direction: column;
+		gap: 0.5rem;
+		transition: opacity 0.3s ease-out;
+		inset: 0;
 		border-radius: 1rem;
-		background-color: hsla(231, 48%, 45%, 0.6);
+		background-color: var(--color-skills-display);
 		padding: 0.7rem;
-		font-size: 1rem;
 		text-align: start;
 	}
 
-	.show {
-		display: block;
+	.skills__display {
+		& .skills__explain {
+			opacity: 1;
+		}
+
+		& .skills__description {
+			opacity: 0;
+		}
+	}
+
+	.skills__display--show {
+		& .skills__explain {
+			opacity: 0;
+		}
+
+		& .skills__description {
+			opacity: 1;
+		}
+	}
+
+	img {
+		font-size: 0.8rem;
 	}
 
 	h3 {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
-		gap: 1rem;
+		gap: 5%;
 	}
 
 	button {
 		position: absolute;
 		top: 0;
 		right: 0;
-		cursor: pointer;
-		border: none;
-		border-top-right-radius: 1rem;
+		border-top-right-radius: inherit;
 		border-bottom-left-radius: 0.2rem;
 		background-color: hsl(0, 0%, 0%, 0.5);
 		padding: 0.3rem;
 		aspect-ratio: 1;
 		width: 2.4rem;
-		color: white;
 		font-size: 1.4rem;
 	}
 
