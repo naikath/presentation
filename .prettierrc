@@ -9,7 +9,8 @@
 	"bracketSpacing": true,
 	"bracketSameLine": false,
 	"arrowParens": "avoid",
-	"singleAttributePerLine": false,
+	"singleAttributePerLine": true,
+	"printWidth": 100,
 	"plugins": [
 		"prettier-plugin-astro",
 		"prettier-plugin-css-order"
