@@ -16,6 +16,7 @@ import SkillsIcon from './SkillsIcon.astro';
 
 <style>
 	section {
+		--spacing: 0.5rem;
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing);
@@ -28,9 +29,12 @@ import SkillsIcon from './SkillsIcon.astro';
 	}
 
 	.skills__icon-grid {
+		--cell-size: 70px;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-		justify-content: right;
+		grid-template-columns: repeat(auto-fill, minmax(var(--cell-size), 1fr));
 		gap: var(--spacing);
+		@media (width > 700px) {
+			--cell-size: 90px;
+		}
 	}
 </style>
