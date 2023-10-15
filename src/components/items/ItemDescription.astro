@@ -1,0 +1,55 @@
+<div class='description active'>
+	<h3>
+		<img
+			src=''
+			alt='Icon'
+			width='40'
+			height='40'
+		/>
+		<p class='title'>Title</p>
+	</h3>
+	<p class='content'>Description</p>
+	<button>×</button>
+</div>
+
+<style>
+	.description {
+		display: none;
+		position: relative;
+		border-radius: 1rem;
+		background-color: hsla(0, 0%, 68%, 0.8);
+		padding: 0.7rem;
+		font-size: 1rem;
+		text-align: start;
+	}
+
+	.description.show {
+		display: block;
+	}
+
+	.description h3 {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.description button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		cursor: pointer;
+		border: none;
+		border-top-right-radius: 1rem;
+		border-bottom-left-radius: 0.2rem;
+		background-color: hsl(0, 0%, 0%, 0.5);
+		padding: 0.3rem;
+		aspect-ratio: 1;
+		width: 2.4rem;
+		color: white;
+		font-size: 1.4rem;
+	}
+
+	.description button:hover {
+		background-color: hsl(0, 0%, 0%, 0.9);
+	}
+</style>
