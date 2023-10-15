@@ -1,6 +1,6 @@
 ---
 import ItemDescription from './ItemDescription.astro';
-import SkillGroup from './SkillGroup.astro';
+import SkillsGroup from './SkillGroup.astro';
 
 // The skill name and descriptions are separated
 // This part is static and is run at build time
@@ -8,15 +8,15 @@ import SkillGroup from './SkillGroup.astro';
 // The dynamic part that requires JS is separated
 ---
 
-<div class='card-skill'>
+<div class='skills__collection'>
 	<h2>Skills</h2>
-	<SkillGroup />
+	<SkillsGroup />
 
 	<ItemDescription />
 </div>
 
 <style>
-	.card-skill {
+	.skills__collection {
 		--spacing: 0.5rem;
 		display: flex;
 		flex-direction: column;
@@ -30,41 +30,43 @@ import SkillGroup from './SkillGroup.astro';
 </style>
 
 <script>
-	import skillDescriptions from './../../data/skills/descriptions.json';
+	import skillsDescriptionData from './../../data/skills/descriptions.json';
 
 	// add event listeners to the items
 	// so when clicked, they select the description and set the content to the description object of the list
 
-	const card = document.querySelector('.card-skill');
-	const itemList = card.querySelectorAll('.icon') as NodeListOf<HTMLElement>;
-	const itemDescription = card.querySelector('.description') as HTMLElement;
+	const skillsIcons = document.querySelectorAll('.skills__icon') as NodeListOf<HTMLElement>;
+	const skillsDescription = document.querySelector('.skills__description') as HTMLElement;
 
-	const descriptionParts = {
-		img: itemDescription.querySelector('img') as HTMLImageElement,
-		title: itemDescription.querySelector('.title') as HTMLElement,
-		content: itemDescription.querySelector('.content') as HTMLElement,
-		button: itemDescription.querySelector('button') as HTMLButtonElement,
+	const descriptionElements = {
+		img: skillsDescription.querySelector('img') as HTMLImageElement,
+		title: skillsDescription.querySelector('.title') as HTMLElement,
+		content: skillsDescription.querySelector('.content') as HTMLElement,
+		button: skillsDescription.querySelector('button') as HTMLButtonElement,
 	};
 
-	descriptionParts.button.addEventListener('click', () => {
-		itemDescription.classList.remove('show');
+	descriptionElements.button.addEventListener('click', () => {
+		skillsDescription.classList.remove('show');
 	});
 
 	function getItemDesc(id: number | string) {
 		if (typeof id === 'string') id = Number.parseInt(id);
-		return skillDescriptions.find(skill => skill.id === id).description;
+		return skillsDescriptionData.find(skill => skill.id === id).description;
 	}
 
-	itemList.forEach(item => {
+	skillsIcons.forEach(item => {
 		item.addEventListener('click', () => {
-			descriptionParts.img.src = item.dataset.img;
-			descriptionParts.img.alt = `${item.dataset.name} icon`;
-			descriptionParts.title.innerText = item.dataset.name;
+			const { img, title, content } = descriptionElements;
+			const { img: dataImg, name: dataName, id: dataId } = item.dataset;
 
-			const description = getItemDesc(item.dataset.id);
-			descriptionParts.content.innerText = description;
+			img.src = dataImg;
+			img.alt = `${dataName} icon`;
+			title.innerText = dataName;
 
-			itemDescription.classList.add('show');
+			const dataDescription = getItemDesc(dataId);
+			content.innerText = dataDescription;
+
+			skillsDescription.classList.add('show');
 		});
 	});
 </script>

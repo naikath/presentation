@@ -1,13 +1,13 @@
 ---
-import skillItems from '../../data/skills/items.json';
+import skillsItems from '../../data/skills/items.json';
 import Icon from './Icon.astro';
 ---
 
-<section>
+<section class='skills__group'>
 	<h3>JS</h3>
-	<div class='icon-grid'>
+	<div class='skills__icon-grid'>
 		{
-			skillItems.map(skill => {
+			skillsItems.map(skill => {
 				return <Icon skill={skill} />;
 			})
 		}
@@ -27,7 +27,7 @@ import Icon from './Icon.astro';
 		font-size: 1.5rem;
 	}
 
-	.icon-grid {
+	.skills__icon-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
 		justify-content: right;

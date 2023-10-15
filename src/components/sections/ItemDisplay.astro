@@ -1,13 +1,28 @@
 ---
-import ItemSkills from '../items/ItemSkill.astro';
+import ItemSkill from '../items/ItemSkill.astro';
 ---
 
-<section>
-	<article class='skills'>
-		<ItemSkills />
+<!--
+	Class Naming:
+	
+	.skills {
+		.skills__collection {
+			.skills__group {
+				.skills__icon-grid {
+					.skills__icon
+				}
+			}
+		}
+		.skills__description {}
+	}
+
+-->
+<section class='skills'>
+	<article>
+		<ItemSkill />
 	</article>
-	<article class='card'>
-		<!-- <ItemCard /> -->
+	<article>
+		<!-- <ItemDescription /> -->
 	</article>
 </section>
 
