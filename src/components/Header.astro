@@ -12,9 +12,14 @@ import { Image } from 'astro:assets';
 		display: flex;
 		justify-content: space-evenly;
 		align-items: center;
+		background-color: rgba(0, 0, 0, 0.5);
 		text-align: center;
+		--border-bottom-radius: 5rem 1rem;
+		border-bottom-right-radius: var(--border-bottom-radius);
+		border-bottom-left-radius: var(--border-bottom-radius);
 	}
-	header h1 {
+
+	h1 {
 		display: flex;
 		flex-wrap: wrap;
 	}
