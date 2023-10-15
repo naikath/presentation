@@ -26,7 +26,29 @@
 	.skills__display {
 		--color-skills-display: hsla(231, 48%, 45%, 0.6);
 		position: relative;
+		height: 100%;
 	}
+
+	/*
+	
+	States:
+	Default
+	explain: visible
+	description: invisible
+	
+	Showing
+	explain: invisible
+	description: visible
+
+	visible:
+	position:relative
+	opacity:1
+	
+	invisible:
+	position:absolute
+	opacity:0
+
+	*/
 
 	article {
 		display: flex;
@@ -34,32 +56,42 @@
 		flex-direction: column;
 		gap: 0.5rem;
 		transition: opacity 0.3s ease-out;
-		inset: 0;
 		border-radius: 1rem;
 		background-color: var(--color-skills-display);
 		padding: 0.7rem;
+		width: 100%;
 		text-align: start;
 	}
 
+	/* STATES HIDING SHOWING */
+
 	.skills__display {
 		& .skills__explain {
+			position: relative;
 			opacity: 1;
 		}
 
 		& .skills__description {
+			position: absolute;
+			top: 0;
 			opacity: 0;
 		}
 	}
 
 	.skills__display--show {
 		& .skills__explain {
+			position: absolute;
+			top: 0;
 			opacity: 0;
 		}
 
 		& .skills__description {
+			position: relative;
 			opacity: 1;
 		}
 	}
+
+	/* DESCRIPTION TITLE */
 
 	img {
 		font-size: 0.8rem;
@@ -72,13 +104,16 @@
 		gap: 5%;
 	}
 
+	/* CLOSE BUTTON */
+
 	button {
+		--button-opacity: 0.3;
 		position: absolute;
 		top: 0;
 		right: 0;
 		border-top-right-radius: inherit;
 		border-bottom-left-radius: 0.2rem;
-		background-color: hsl(0, 0%, 0%, 0.5);
+		background-color: hsl(0, 0%, 0%, var(--button-opacity));
 		padding: 0.3rem;
 		aspect-ratio: 1;
 		width: 2.4rem;
@@ -86,6 +121,6 @@
 	}
 
 	button:hover {
-		background-color: hsl(0, 0%, 0%, 0.9);
+		--button-opacity: 0.7;
 	}
 </style>
