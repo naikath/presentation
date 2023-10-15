@@ -6,18 +6,43 @@ const title = 'Presentation';
 <html lang='en'>
 	<head>
 		<meta charset='UTF-8' />
-		<meta name='description' content='Astro description' />
-		<meta name='viewport' content='width=device-width' />
-		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-		<meta name='generator' content={Astro.generator} />
+		<meta
+			name='description'
+			content='Astro description'
+		/>
+		<meta
+			name='viewport'
+			content='width=device-width'
+		/>
+		<link
+			rel='icon'
+			type='image/svg+xml'
+			href='/favicon.svg'
+		/>
+		<meta
+			name='generator'
+			content={Astro.generator}
+		/>
 		<title>{title}</title>
-		<link rel='preconnect' href='https://fonts.googleapis.com' />
-		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+		<!-- Google Fonts -->
+		<link
+			rel='preconnect'
+			href='https://fonts.googleapis.com'
+		/>
+		<link
+			rel='preconnect'
+			href='https://fonts.gstatic.com'
+			crossorigin
+		/>
 		<link
 			href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'
 			rel='stylesheet'
 		/>
-		<link rel='stylesheet' href='/modern-normalize.min.css' />
+		<!-- Modern-Normalize Stylesheet -->
+		<link
+			rel='stylesheet'
+			href='/modern-normalize.min.css'
+		/>
 	</head>
 	<body>
 		<slot />
@@ -31,6 +56,17 @@ const title = 'Presentation';
 		box-sizing: border-box;
 		margin: 0;
 		padding: 0;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	button {
+		cursor: pointer;
+		border: none;
+		color: inherit;
 	}
 
 	html {
