@@ -49,7 +49,8 @@ async function setDescriptions(langCode: string = defaultLang) {
 	// and set the key of the object
 
 	// console.log(`data for '${langCode}' not set`);
-	// this has to be in a try...catch block, since throws and is not handled by .catch()
+	// this has to be in a try...catch block
+	// since import() throws if receives undefined, and is not handled by .catch()
 	try {
 		// if there is a file
 		// import the file
@@ -64,13 +65,13 @@ async function setDescriptions(langCode: string = defaultLang) {
 		desriptionsData[langCode] = desriptionsData[defaultLang];
 		// console.log(`Data set`, desriptionsData[langCode]);
 		// and set the import path to the default one just in case
-		// descriptionsPaths[langCode] = descriptionsPaths[defaultLang];
+		descriptionsPaths[langCode] = descriptionsPaths[defaultLang];
 	}
 }
 
 export async function getDescriptions(langCode: string = defaultLang) {
 	if (!desriptionsData[langCode]) {
-		setDescriptions(langCode);
+		await setDescriptions(langCode);
 	}
 	// when data is set, return it
 	return desriptionsData[langCode];
