@@ -75,3 +75,13 @@ export async function getDescriptions(langCode: string = defaultLang) {
 	// when data is set, return it
 	return desriptionsData[langCode];
 }
+
+export function getLangFromUrl(url: URL | string) {
+	// asuming url path starts with /langCode
+	if (!(url instanceof URL)) {
+		url = new URL(url);
+	}
+	const [, lang] = url.pathname.split('/');
+	if (lang in languages) return lang;
+	return defaultLang;
+}
