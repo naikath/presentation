@@ -26,7 +26,10 @@ import SkillsGroup from './SkillsGroup.astro';
 </style>
 
 <script>
-	import skillsDescriptionData from './../../../data/skills/descriptions.json';
+	// import skillsDescriptionData from './../../../data/skills/descriptions.json';
+	import { getDescriptions, getLangFromUrl } from '../../../utils/languages';
+	const langCode = getLangFromUrl(window.location.href);
+	const skillsDescriptionData = await getDescriptions(langCode);
 
 	// add event listeners to the items
 	// so when clicked, they select the description and set the content to the description object of the list
