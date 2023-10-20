@@ -1,0 +1,17 @@
+[
+	{
+		"id": 1,
+		"img": "/foxPlush.png",
+		"name": "JavaScript"
+	},
+	{
+		"id": 2,
+		"img": "/foxPlush.png",
+		"name": "TypeScript"
+	},
+	{
+		"id": 3,
+		"img": "/foxPlush.png",
+		"name": "NodeJS"
+	}
+]

@@ -1,0 +1,14 @@
+[
+	{
+		"id": 1,
+		"description": "He estado aprendiendo JavaScript por mas o menos un año"
+	},
+	{
+		"id": 2,
+		"description": "He estado aprendiendo TypeScript por medio un año"
+	},
+	{
+		"id": 3,
+		"description": "He estado aprendiendo NodeJS por 3/4 de año"
+	}
+]
