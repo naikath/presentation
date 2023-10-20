@@ -1,0 +1,36 @@
+---
+import type { GetStaticPaths } from 'astro';
+
+import { languages } from '../../utils/languages';
+
+export const getStaticPaths = (() => {
+	const staticPaths = Object.keys(languages).map(langCode => {
+		return { params: { lang: langCode } };
+	});
+	return staticPaths;
+}) satisfies GetStaticPaths;
+
+//
+
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Description from '../../components/sections/Description.astro';
+import Skills from '../../components/sections/skills/Skills.astro';
+---
+
+<Layout>
+	<Header />
+	<main>
+		<Description />
+		<Skills />
+	</main>
+</Layout>
+
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		padding: 2rem 5%;
+	}
+</style>
