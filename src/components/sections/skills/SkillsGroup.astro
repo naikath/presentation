@@ -1,6 +1,8 @@
 ---
-import skillsItemsData from '../../../data/skills/items.json';
 import SkillsIcon from './SkillsIcon.astro';
+
+import { getItemsData, getLangFromUrl } from '../../../utils/languages';
+const skillsItemsData = (await getItemsData(getLangFromUrl(Astro.url))) as Array<any>;
 ---
 
 <section class='skills__group'>
