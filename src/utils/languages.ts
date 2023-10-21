@@ -42,9 +42,9 @@ function setupPaths() {
 	});
 }
 
-setupPaths();
+const dataFiles = import.meta.glob('./../data/skills/*/*.json', { import: 'default' });
 
-// await setDescriptions(defaultLang);
+setupPaths();
 
 async function setDescriptions(langCode: string = defaultLang) {
 	if (desriptionsData[langCode]) return;
@@ -58,7 +58,7 @@ async function setDescriptions(langCode: string = defaultLang) {
 	try {
 		// if there is a file
 		// import the file
-		const { default: data } = await import(descriptionsPaths[langCode]);
+		const data = await dataFiles[descriptionsPaths[langCode]]();
 		// console.log(`Data set`, data);
 		desriptionsData[langCode] = data;
 	} catch (error) {
@@ -103,7 +103,7 @@ async function setDataObject(langCode, dataObj, dataPaths) {
 	try {
 		// if there is a file
 		// import the file
-		const { default: data } = await import(dataPaths[langCode]);
+		const data = await dataFiles[dataPaths[langCode]]();
 		// console.log(`Data set`, data);
 		dataObj[langCode] = data;
 	} catch (error) {
