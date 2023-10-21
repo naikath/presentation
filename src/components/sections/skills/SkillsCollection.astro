@@ -1,14 +1,11 @@
 ---
 import SkillsGroup from './SkillsGroup.astro';
-
-// The skill name and descriptions are separated
-// This part is static and is run at build time
-// to be able to interpolate values in the component
-// The dynamic part that requires JS is separated
+import { getUiData, getLangFromUrl } from '../../../utils/languages';
+const ui = await getUiData(getLangFromUrl(Astro.url));
 ---
 
 <div class='skills__collection'>
-	<h2>Skills</h2>
+	<h2>{ui.skills.title}</h2>
 	<SkillsGroup />
 </div>
 
@@ -26,10 +23,8 @@ import SkillsGroup from './SkillsGroup.astro';
 </style>
 
 <script>
-	// import skillsDescriptionData from './../../../data/skills/descriptions.json';
 	import { getDescriptions, getLangFromUrl } from '../../../utils/languages';
-	const langCode = getLangFromUrl(window.location.href);
-	const skillsDescriptionData = await getDescriptions(langCode);
+	const skillsDescriptionData = await getDescriptions(getLangFromUrl(window.location.href));
 
 	// add event listeners to the items
 	// so when clicked, they select the description and set the content to the description object of the list
@@ -49,9 +44,9 @@ import SkillsGroup from './SkillsGroup.astro';
 		skillsDisplay.classList.remove('skills__display--show');
 	});
 
-	function getItemDesc(id: number | string) {
+	function getItemDesc(id: number | string | undefined) {
 		if (typeof id === 'string') id = Number.parseInt(id);
-		return skillsDescriptionData.find(skill => skill.id === id).description;
+		return skillsDescriptionData.find(skill => skill.id === id)?.description;
 	}
 
 	skillsIcons.forEach(item => {
@@ -59,12 +54,12 @@ import SkillsGroup from './SkillsGroup.astro';
 			const { img, title, content } = descriptionElements;
 			const { img: dataImg, name: dataName, id: dataId } = item.dataset;
 
-			img.src = dataImg;
+			img.src = `${dataImg}`;
 			img.alt = `${dataName} icon`;
-			title.innerText = dataName;
+			title.innerText = `${dataName}`;
 
 			const dataDescription = getItemDesc(dataId);
-			content.innerText = dataDescription;
+			content.innerText = `${dataDescription}`;
 
 			skillsDisplay.classList.add('skills__display--show');
 		});

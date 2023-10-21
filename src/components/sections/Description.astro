@@ -1,5 +1,10 @@
+---
+import { getUiData, getLangFromUrl } from '../../utils/languages';
+const ui = await getUiData(getLangFromUrl(Astro.url));
+---
+
 <section class='intro'>
-	<p>Welcome to my presentation page!</p>
+	<p>{ui.description}</p>
 </section>
 
 <style>
@@ -14,6 +19,6 @@
 		border: white 1px solid;
 		background-color: rgba(0, 0, 0, 0.8);
 		padding: 0.6em;
-		width: 100%;
+		width: 75%;
 	}
 </style>

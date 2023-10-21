@@ -1,11 +1,12 @@
 ---
-
+import { getUiData, getLangFromUrl } from '../../../utils/languages';
+const ui = await getUiData(getLangFromUrl(Astro.url));
 ---
 
 <div class='skills__display'>
 	<article class='skills__explain'>
-		<h3>Explain</h3>
-		<p class='content'>Description</p>
+		<h3>{ui.skills.display}</h3>
+		<p class='content'>{ui.skills.explanation}</p>
 	</article>
 	<article class='skills__description'>
 		<h3>
