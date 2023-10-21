@@ -1,7 +1,8 @@
 {
-  "nav": {
-    "home": "Home",
-    "about": "Sobre mi",
-    "twitter": "Twitter"
+  "description": "Buenas! Ésta es mi página de presentacion!",
+  "skills": {
+    "title": "Habilidades",
+    "display": "Iconos",
+    "explanation": "Estas son todas las tecnologias que sé hasta el momento"
   }
 }

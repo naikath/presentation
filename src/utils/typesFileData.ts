@@ -24,11 +24,12 @@ export type Item = {
 // Ui
 
 export type DataUi = {
-	nav: Nav;
+	description: string;
+	skills: Skills;
 };
 
-type Nav = {
-	home: string;
-	about: string;
-	twitter: string;
+type Skills = {
+	title: string;
+	display: string;
+	explanation: string;
 };

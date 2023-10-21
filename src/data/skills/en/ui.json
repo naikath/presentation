@@ -1,7 +1,8 @@
 {
-  "nav": {
-    "home": "Home",
-    "about": "About",
-    "twitter": "Twitter"
+  "description": "Welcome to my presentation page!",
+  "skills": {
+    "title": "Skills",
+    "display": "Icons",
+    "explanation": "These are the technologies and frameworks I know at the moment"
   }
 }
