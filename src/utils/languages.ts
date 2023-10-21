@@ -46,41 +46,6 @@ const dataFiles = import.meta.glob('./../data/skills/*/*.json', { import: 'defau
 
 setupPaths();
 
-async function setDescriptions(langCode: string = defaultLang) {
-	if (desriptionsData[langCode]) return;
-	// if data is not set
-	// load the file
-	// and set the key of the object
-
-	// console.log(`data for '${langCode}' not set`);
-	// this has to be in a try...catch block
-	// since import() throws if receives undefined, and is not handled by .catch()
-	try {
-		// if there is a file
-		// import the file
-		const data = await dataFiles[descriptionsPaths[langCode]]();
-		// console.log(`Data set`, data);
-		desriptionsData[langCode] = data;
-	} catch (error) {
-		// if theres no file to be imported
-		// set the data to the default one
-
-		// console.log('file doesnt exists');
-		desriptionsData[langCode] = desriptionsData[defaultLang];
-		// console.log(`Data set`, desriptionsData[langCode]);
-		// and set the import path to the default one just in case
-		descriptionsPaths[langCode] = descriptionsPaths[defaultLang];
-	}
-}
-
-export async function getDescriptions(langCode: string = defaultLang) {
-	if (!desriptionsData[langCode]) {
-		await setDescriptions(langCode);
-	}
-	// when data is set, return it
-	return desriptionsData[langCode];
-}
-
 export function getLangFromUrl(url: URL | string) {
 	// asuming url path starts with /langCode
 	if (!(url instanceof URL)) {
@@ -94,28 +59,35 @@ export function getLangFromUrl(url: URL | string) {
 async function setDataObject(langCode, dataObj, dataPaths) {
 	if (dataObj[langCode]) return;
 	// if data is not set
-	// load the file
-	// and set the key of the object
-
 	// console.log(`data for '${langCode}' not set`);
-	// this has to be in a try...catch block
-	// since import() throws if receives undefined, and is not handled by .catch()
 	try {
 		// if there is a file
-		// import the file
+		// load the file
+		// and set the key of the object
 		const data = await dataFiles[dataPaths[langCode]]();
 		// console.log(`Data set`, data);
 		dataObj[langCode] = data;
 	} catch (error) {
 		// if theres no file to be imported
 		// set the data to the default one
-
 		// console.log('file doesnt exists');
 		dataObj[langCode] = dataObj[defaultLang];
 		// console.log(`Data set`, dataObj[langCode]);
 		// and set the import path to the default one just in case
 		dataPaths[langCode] = dataPaths[defaultLang];
 	}
+}
+
+async function setDescriptions(langCode) {
+	await setDataObject(langCode, desriptionsData, descriptionsPaths);
+}
+
+export async function getDescriptions(langCode: string = defaultLang) {
+	if (!desriptionsData[langCode]) {
+		await setDescriptions(langCode);
+	}
+	// when data is set, return it
+	return desriptionsData[langCode];
 }
 
 async function setUIdata(langCode) {
