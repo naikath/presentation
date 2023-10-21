@@ -13,6 +13,8 @@ the data object values should point to the default ones
 
 */
 
+import type { DataAny, DataDescriptions, DataItems, DataUi } from './typesFileData';
+
 export const languages = {
 	en: 'English',
 	es: 'Español',
@@ -25,14 +27,14 @@ export const defaultLang: LangCode = 'en';
 const langCodes = Object.keys(languages) as LangCode[];
 
 // data
-const desriptionsData: Record<string, object> = {};
-const itemsData: Record<string, object> = {};
-const uiData: Record<string, object> = {};
+const desriptionsData = {} as Record<LangCode, DataDescriptions>;
+const itemsData = {} as Record<LangCode, DataItems>;
+const uiData = {} as Record<LangCode, DataUi>;
 
 // paths
-const descriptionsPaths: Record<string, string> = {};
-const itemsPaths: Record<string, string> = {};
-const uiPaths: Record<string, string> = {};
+const descriptionsPaths = {} as Record<LangCode, string>;
+const itemsPaths = {} as Record<LangCode, string>;
+const uiPaths = {} as Record<LangCode, string>;
 
 function setupPaths() {
 	langCodes.forEach(langCode => {
@@ -46,17 +48,33 @@ const dataFiles = import.meta.glob('./../data/skills/*/*.json', { import: 'defau
 
 setupPaths();
 
-export function getLangFromUrl(url: URL | string) {
+/**
+ * Get language code from an URL
+ *
+ * Usage:
+ *
+ * ```js
+ * // client
+ * getLangFromUrl(window.location.href)
+ * // server
+ * getLangFromUrl(Astro.URL)
+ * ```
+ */
+export function getLangFromUrl(url: URL | string): LangCode {
 	// asuming url path starts with /langCode
 	if (!(url instanceof URL)) {
 		url = new URL(url);
 	}
 	const [, lang] = url.pathname.split('/');
-	if (lang in languages) return lang;
+	if (lang in languages) return lang as LangCode;
 	return defaultLang;
 }
 
-async function setDataObject(langCode, dataObj, dataPaths) {
+async function setDataObject(
+	langCode: LangCode,
+	dataObj: Record<LangCode, DataAny>,
+	dataPaths: Record<LangCode, string>,
+) {
 	if (dataObj[langCode]) return;
 	// if data is not set
 	// console.log(`data for '${langCode}' not set`);
@@ -78,35 +96,33 @@ async function setDataObject(langCode, dataObj, dataPaths) {
 	}
 }
 
-async function setDescriptions(langCode) {
+async function setDescriptions(langCode: LangCode) {
 	await setDataObject(langCode, desriptionsData, descriptionsPaths);
 }
 
-export async function getDescriptions(langCode: string = defaultLang) {
+export async function getDescriptions(langCode: LangCode = defaultLang) {
 	if (!desriptionsData[langCode]) {
 		await setDescriptions(langCode);
 	}
-	// when data is set, return it
 	return desriptionsData[langCode];
 }
 
-async function setUIdata(langCode) {
+async function setUIdata(langCode: LangCode) {
 	await setDataObject(langCode, uiData, uiPaths);
 }
 
-export async function getUIdata(langCode: string = defaultLang) {
+export async function getUIdata(langCode: LangCode = defaultLang) {
 	if (!uiData[langCode]) {
 		await setUIdata(langCode);
 	}
-	// when data is set, return it
 	return uiData[langCode];
 }
 
-async function setItemsData(langCode) {
+async function setItemsData(langCode: LangCode) {
 	await setDataObject(langCode, itemsData, itemsPaths);
 }
 
-export async function getItemsData(langCode: string = defaultLang) {
+export async function getItemsData(langCode: LangCode = defaultLang) {
 	if (!itemsData[langCode]) {
 		await setItemsData(langCode);
 	}
