@@ -57,7 +57,7 @@ setupPaths();
  * // client
  * getLangFromUrl(window.location.href)
  * // server
- * getLangFromUrl(Astro.URL)
+ * getLangFromUrl(Astro.url)
  * ```
  */
 export function getLangFromUrl(url: URL | string): LangCode {
@@ -96,35 +96,23 @@ async function setDataObject(
 	}
 }
 
-async function setDescriptions(langCode: LangCode) {
-	await setDataObject(langCode, desriptionsData, descriptionsPaths);
-}
-
 export async function getDescriptions(langCode: LangCode = defaultLang) {
 	if (!desriptionsData[langCode]) {
-		await setDescriptions(langCode);
+		await setDataObject(langCode, desriptionsData, descriptionsPaths);
 	}
 	return desriptionsData[langCode];
 }
 
-async function setUIdata(langCode: LangCode) {
-	await setDataObject(langCode, uiData, uiPaths);
-}
-
-export async function getUIdata(langCode: LangCode = defaultLang) {
+export async function getUiData(langCode: LangCode = defaultLang) {
 	if (!uiData[langCode]) {
-		await setUIdata(langCode);
+		await setDataObject(langCode, uiData, uiPaths);
 	}
 	return uiData[langCode];
 }
 
-async function setItemsData(langCode: LangCode) {
-	await setDataObject(langCode, itemsData, itemsPaths);
-}
-
 export async function getItemsData(langCode: LangCode = defaultLang) {
 	if (!itemsData[langCode]) {
-		await setItemsData(langCode);
+		await setDataObject(langCode, itemsData, itemsPaths);
 	}
 	return itemsData[langCode];
 }

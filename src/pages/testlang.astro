@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getUIdata } from '../utils/languages';
+import { getUiData } from '../utils/languages';
 
-const {nav} =(await getUIdata("es"))
+const {nav} =(await getUiData("es"))
 
 ---
 
@@ -13,9 +13,9 @@ const {nav} =(await getUIdata("es"))
 </Layout>
 
 <script>
-	import { getDescriptions, getLangFromUrl, getUIdata } from '../utils/languages';
+	import { getDescriptions, getLangFromUrl, getUiData } from '../utils/languages';
 	const langCode = getLangFromUrl(window.location.href);
 	// console.log(langCode);
 	console.log(await getDescriptions(langCode));
-	console.log(await getUIdata());
+	console.log(await getUiData());
 </script>
