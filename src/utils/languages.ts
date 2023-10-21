@@ -26,16 +26,17 @@ const langCodes = Object.keys(languages) as LangCode[];
 
 // data
 const desriptionsData: Record<string, object> = {};
+const itemsData: Record<string, object> = {};
 const uiData: Record<string, object> = {};
 
 // paths
-const pathsItems: Record<string, string> = {};
 const descriptionsPaths: Record<string, string> = {};
+const itemsPaths: Record<string, string> = {};
 const uiPaths: Record<string, string> = {};
 
 function setupPaths() {
 	langCodes.forEach(langCode => {
-		pathsItems[langCode] = `../data/skills/${langCode}/items.json`;
+		itemsPaths[langCode] = `../data/skills/${langCode}/items.json`;
 		descriptionsPaths[langCode] = `../data/skills/${langCode}/descriptions.json`;
 		uiPaths[langCode] = `../data/skills/${langCode}/ui.json`;
 	});
@@ -43,7 +44,7 @@ function setupPaths() {
 
 setupPaths();
 
-await setDescriptions(defaultLang);
+// await setDescriptions(defaultLang);
 
 async function setDescriptions(langCode: string = defaultLang) {
 	if (desriptionsData[langCode]) return;
@@ -127,4 +128,15 @@ export async function getUIdata(langCode: string = defaultLang) {
 	}
 	// when data is set, return it
 	return uiData[langCode];
+}
+
+async function setItemsData(langCode) {
+	await setDataObject(langCode, itemsData, itemsPaths);
+}
+
+export async function getItemsData(langCode: string = defaultLang) {
+	if (!itemsData[langCode]) {
+		await setItemsData(langCode);
+	}
+	return itemsData[langCode];
 }
