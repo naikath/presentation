@@ -1,4 +1,6 @@
 ---
+// Routes Generation
+
 import type { GetStaticPaths } from 'astro';
 
 import { languages } from '../../utils/languages';
@@ -7,10 +9,11 @@ export const getStaticPaths = (() => {
 	const staticPaths = Object.keys(languages).map(langCode => {
 		return { params: { lang: langCode } };
 	});
-	return staticPaths;
+
+	return [...staticPaths, { params: { lang: undefined } }];
 }) satisfies GetStaticPaths;
 
-//
+// Page
 
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
