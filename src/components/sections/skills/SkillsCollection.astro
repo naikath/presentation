@@ -24,52 +24,54 @@ const ui = await getUiData(getLangFromUrl(Astro.url));
 
 <script>
 	import { getDescriptions, getLangFromUrl } from '../../../utils/languages';
-	const skillsDescriptionData = await getDescriptions(getLangFromUrl(window.location.href));
+	const skillsData = await getDescriptions(getLangFromUrl(window.location.href));
 
 	// add event listeners to the items
 	// so when clicked, they select the description and set the content to the description object of the list
 
 	const skillsIcons = document.querySelectorAll('.skills__icon') as NodeListOf<HTMLElement>;
-	const skillsDescription = document.querySelector('.skills__description') as HTMLElement;
 	const skillsDisplay = document.querySelector('.skills__display') as HTMLElement;
 
-	const descriptionElements = {
-		img: skillsDescription.querySelector('img') as HTMLImageElement,
-		title: skillsDescription.querySelector('.title') as HTMLElement,
-		definition: skillsDescription.querySelector('.definition') as HTMLElement,
-		content: skillsDescription.querySelector('.content') as HTMLElement,
-		button: skillsDescription.querySelector('button') as HTMLButtonElement,
+	const skillsDescriptionElement = document.querySelector('.skills__description') as HTMLElement;
+	const skillsDescription = {
+		img: skillsDescriptionElement.querySelector('img') as HTMLImageElement,
+		title: skillsDescriptionElement.querySelector('.title') as HTMLElement,
+		definition: skillsDescriptionElement.querySelector('.definition') as HTMLElement,
+		content: skillsDescriptionElement.querySelector('.content') as HTMLElement,
+		button: skillsDescriptionElement.querySelector('button') as HTMLButtonElement,
 	};
 
-	descriptionElements.button.addEventListener('click', () => {
-		skillsDisplay.classList.remove('skills__display--show');
-	});
-
-	function getItemDesc(id: number | string | undefined) {
-		if (typeof id === 'string') id = Number.parseInt(id);
-		return skillsDescriptionData.find(skill => skill.id === id)?.description;
+	function skillsShowDescription(show: boolean) {
+		skillsDisplay.classList.toggle('skills__display--show', show);
 	}
 
-	function getItemDef(id: number | string | undefined) {
+	skillsDescription.button.addEventListener('click', () => {
+		skillsShowDescription(false);
+	});
+
+	type ItemId = number | string | undefined;
+	type ItemData = 'definition' | 'description';
+	function getItemData(id: ItemId, itemDataName: ItemData) {
+		if (id === undefined) return;
 		if (typeof id === 'string') id = Number.parseInt(id);
-		return skillsDescriptionData.find(skill => skill.id === id)?.definition;
+		const itemData = skillsData.find(skill => skill.id === id);
+		if (itemDataName === 'definition') return itemData?.definition;
+		if (itemDataName === 'description') return itemData?.description;
 	}
 
 	skillsIcons.forEach(item => {
 		item.addEventListener('click', () => {
-			const { img, title, definition, content } = descriptionElements;
+			const { img, title, definition, content } = skillsDescription;
 			const { img: dataImg, name: dataName, id: dataId } = item.dataset;
 
 			img.src = `${dataImg}`;
 			img.alt = `${dataName} icon`;
 			title.innerText = `${dataName}`;
 
-			const dataDescription = getItemDesc(dataId);
-			const dataDefinition = getItemDef(dataId);
-			content.innerText = `${dataDescription}`;
-			definition.innerText = `${dataDefinition}`;
+			content.innerText = getItemData(dataId, 'description') ?? '';
+			definition.innerText = getItemData(dataId, 'definition') ?? '';
 
-			skillsDisplay.classList.add('skills__display--show');
+			skillsShowDescription(true);
 		});
 	});
 </script>
