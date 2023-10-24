@@ -1,14 +1,17 @@
 [
 	{
 		"id": 1,
+		"definition": "Ésta es una definicion muy buena",
 		"description": "He estado aprendiendo JavaScript por mas o menos un año"
 	},
 	{
 		"id": 2,
+		"definition": "",
 		"description": "He estado aprendiendo TypeScript por medio un año"
 	},
 	{
 		"id": 3,
+		"definition": "",
 		"description": "He estado aprendiendo NodeJS por 3/4 de año"
 	}
 ]

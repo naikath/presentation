@@ -8,6 +8,7 @@ export type DataDescriptions = Description[];
 
 type Description = {
 	id: number;
+	definition: string;
 	description: string;
 };
 

@@ -36,6 +36,7 @@ const ui = await getUiData(getLangFromUrl(Astro.url));
 	const descriptionElements = {
 		img: skillsDescription.querySelector('img') as HTMLImageElement,
 		title: skillsDescription.querySelector('.title') as HTMLElement,
+		definition: skillsDescription.querySelector('.definition') as HTMLElement,
 		content: skillsDescription.querySelector('.content') as HTMLElement,
 		button: skillsDescription.querySelector('button') as HTMLButtonElement,
 	};
@@ -49,9 +50,14 @@ const ui = await getUiData(getLangFromUrl(Astro.url));
 		return skillsDescriptionData.find(skill => skill.id === id)?.description;
 	}
 
+	function getItemDef(id: number | string | undefined) {
+		if (typeof id === 'string') id = Number.parseInt(id);
+		return skillsDescriptionData.find(skill => skill.id === id)?.definition;
+	}
+
 	skillsIcons.forEach(item => {
 		item.addEventListener('click', () => {
-			const { img, title, content } = descriptionElements;
+			const { img, title, definition, content } = descriptionElements;
 			const { img: dataImg, name: dataName, id: dataId } = item.dataset;
 
 			img.src = `${dataImg}`;
@@ -59,7 +65,9 @@ const ui = await getUiData(getLangFromUrl(Astro.url));
 			title.innerText = `${dataName}`;
 
 			const dataDescription = getItemDesc(dataId);
+			const dataDefinition = getItemDef(dataId);
 			content.innerText = `${dataDescription}`;
+			definition.innerText = `${dataDefinition}`;
 
 			skillsDisplay.classList.add('skills__display--show');
 		});

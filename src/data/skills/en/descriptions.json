@@ -1,14 +1,17 @@
 [
 	{
 		"id": 1,
+		"definition": "This is a very nice definition",
 		"description": "I've been learning JavaScript for around a year"
 	},
 	{
 		"id": 2,
+		"definition": "",
 		"description": "I've been learning TypeScript for half a year"
 	},
 	{
 		"id": 3,
+		"definition": "",
 		"description": "I've been learning NodeJS for 3/4 of a year"
 	}
 ]
