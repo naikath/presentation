@@ -8,10 +8,13 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"check": "astro check"
+		"check": "astro check",
+		"check:ts": "tsc"
 	},
 	"dependencies": {
-		"astro": "^3.2.3"
+		"@astrojs/check": "^0.2.1",
+		"astro": "^3.2.3",
+		"typescript": "^5.2.2"
 	},
 	"devDependencies": {
 		"postcss": "^8.4.31",
