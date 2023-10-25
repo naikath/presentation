@@ -1,80 +1,84 @@
+---
+/* This file should probably be renamed */
+---
+
 <div class='card-lang'>
-	<h2>Lang</h2>
+	<h3>Lang</h3>
 	<form class='lang'>
-		<label> <input type='radio' name='lang' /> English</label>
-		<label> <input type='radio' name='lang' /> Spanish</label>
-		<!-- <button type='submit'>Apply</button> -->
-		<!-- TODO: add button to switch languages -->
+		<label>
+			<input
+				type='radio'
+				name='lang'
+			/> English</label
+		>
+		<label>
+			<input
+				type='radio'
+				name='lang'
+			/> Spanish</label
+		>
+		<button
+			type='submit'
+			disabled
+			>Reload</button
+		>
 	</form>
-	<div>
-		oh, this feature...
-		<br />
-		 this is not developed yet.. sorry 😅
-	</div>
 </div>
 
 <style>
+	.card-lang {
+		font-size: 1.3rem;
+	}
+
+	h3 {
+		margin-bottom: 0.4em;
+		font-weight: 400;
+	}
+
 	form {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 0.5rem;
+		gap: 0.5em;
 	}
 
 	button {
+		align-self: center;
+		transition: opacity 0.5s;
 		border: solid 2px white;
 		border-radius: 4px;
 		background: hsl(271, 76%, 53%);
-		padding: 0.5rem;
+		padding: 0.3em;
 		color: white;
+		font-size: 0.8em;
 	}
 
 	button:hover {
 		background: hsl(271, 76%, 40%);
 	}
 
-	h2 {
-		font-size: 2rem;
-		text-align: center;
-	}
-
-	label {
-		font-size: 1.5rem;
-	}
-
-	.card-lang > div {
-		display: none;
-		position: relative;
-		margin-top: 1rem;
-		inset: 0;
-		border-radius: 1rem;
-		background-color: hsl(0, 0%, 0%, 0.5);
-		padding: 1rem;
-		width: 100%;
-	}
-
-	.card-lang > div.show {
-		display: block;
+	button:disabled {
+		opacity: 0.5;
 	}
 </style>
 
 <script>
-	const form = document.querySelector('.card-lang > form') as HTMLFormElement;
-	const message = document.querySelector('.card-lang > div');
+	// const form = document.querySelector('.card-lang form') as HTMLFormElement;
+	// const message = document.querySelector('.card-lang > div');
 
-	Array.from(form.elements).forEach(element => {
-		if (element.tagName === 'INPUT') {
-			element.addEventListener('change', () => {
-				message.classList.add('show');
-				setTimeout(() => {
-					message.classList.remove('show');
-				}, 3000);
-			});
-		}
-	});
+	// Array.from(form.elements).forEach(element => {
+	// 	if (element.tagName === 'INPUT') {
+	// 		element.addEventListener('change', () => {
+	// 			message?.classList.add('show');
+	// 			setTimeout(() => {
+	// 				message?.classList.remove('show');
+	// 			}, 3000);
+	// 		});
+	// 	}
+	// });
 
-	form.addEventListener('submit', e => {
-		// console.log('Submiting');
-		e.preventDefault();
-	});
+	// form.addEventListener('submit', e => {
+	// 	// console.log('Submiting');
+	// 	e.preventDefault();
+	// });
 </script>

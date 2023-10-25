@@ -1,9 +1,12 @@
 ---
-
+import ItemLang from './ItemLang.astro';
 ---
 
 <section class='options'>
-	<div class='options__content'>Options</div>
+	<div class='options__content'>
+		<p>Options</p>
+		<ItemLang />
+	</div>
 	<button class='options__icon'> opt</button>
 </section>
 
@@ -23,7 +26,6 @@
 		border-radius: 1rem;
 		background-color: hsla(0, 0%, 0%);
 		aspect-ratio: 1;
-
 		width: 3em;
 	}
 
