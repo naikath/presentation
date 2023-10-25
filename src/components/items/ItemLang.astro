@@ -9,19 +9,17 @@
 			<input
 				type='radio'
 				name='lang'
+				value='en'
 			/> English</label
 		>
 		<label>
 			<input
 				type='radio'
 				name='lang'
+				value='es'
 			/> Spanish</label
 		>
-		<button
-			type='submit'
-			disabled
-			>Reload</button
-		>
+		<a class='disabled'>Reload</a>
 	</form>
 </div>
 
@@ -42,7 +40,7 @@
 		gap: 0.5em;
 	}
 
-	button {
+	a {
 		align-self: center;
 		transition: opacity 0.5s;
 		border: solid 2px white;
@@ -51,34 +49,53 @@
 		padding: 0.3em;
 		color: white;
 		font-size: 0.8em;
+		text-decoration: none;
 	}
 
-	button:hover {
+	a:hover:not(.disabled) {
 		background: hsl(271, 76%, 40%);
 	}
 
-	button:disabled {
+	a.disabled {
 		opacity: 0.5;
 	}
 </style>
 
 <script>
-	// const form = document.querySelector('.card-lang form') as HTMLFormElement;
-	// const message = document.querySelector('.card-lang > div');
+	import { getLangFromUrl, getUrlPathWithLang, type LangCode } from '../../utils/languages';
 
-	// Array.from(form.elements).forEach(element => {
-	// 	if (element.tagName === 'INPUT') {
-	// 		element.addEventListener('change', () => {
-	// 			message?.classList.add('show');
-	// 			setTimeout(() => {
-	// 				message?.classList.remove('show');
-	// 			}, 3000);
-	// 		});
-	// 	}
-	// });
+	const url = window.location.href;
 
-	// form.addEventListener('submit', e => {
-	// 	// console.log('Submiting');
-	// 	e.preventDefault();
-	// });
+	const currentLang = getLangFromUrl(url);
+
+	const langOptions = document.querySelectorAll(
+		'.card-lang input[type="radio"]',
+	) as NodeListOf<HTMLInputElement>;
+
+	langOptions.forEach(element => {
+		const inputLang = element.value as LangCode;
+		if (inputLang === currentLang) {
+			element.checked = true;
+		}
+		element.addEventListener('change', () => {
+			if (inputLang !== currentLang) {
+				setButtonUrl(inputLang);
+			} else {
+				setButtonUrl(false);
+			}
+		});
+	});
+
+	const link = document.querySelector('.card-lang a') as HTMLAnchorElement;
+
+	function setButtonUrl(newLangCode: LangCode | false) {
+		if (newLangCode) {
+			link?.classList.remove('disabled');
+			const newPath = getUrlPathWithLang(url, newLangCode);
+			link.href = newPath;
+		} else {
+			link?.classList.add('disabled');
+			link?.removeAttribute('href');
+		}
+	}
 </script>
