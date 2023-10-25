@@ -81,7 +81,32 @@ function stringToUrlObject(url: string | URL) {
 	return url;
 }
 
-export function getUrlPathWithLang(url: URL | string, newLangCode: LangCode) {}
+export function getUrlPathWithLang(url: URL | string, newLangCode: LangCode | '' = '') {
+	url = stringToUrlObject(url);
+	const currentLangCode = getLangFromUrl(url);
+	const currentPath = url.pathname;
+	const pathArray = currentPath.split('/');
+	let newPath: string[];
+	// '/' => ['', '']
+	// '/path' => ['', 'path']
+	// '/path/' => ['', 'path', '']
+	if (currentPath.endsWith('/')) pathArray.pop();
+	// Normalize so in every case we have to push a new element
+	// And not replace the last index in some of them
+
+	if (!pathArray.includes(currentLangCode)) {
+		// langCode is not present in the url
+		newPath = [...pathArray, newLangCode];
+		// append new langCode to the end
+	} else {
+		// replace it
+		newPath = pathArray.map(p => {
+			return p === currentLangCode ? newLangCode : p;
+		});
+	}
+
+	return newPath.join('/');
+}
 
 async function setDataObject(
 	langCode: LangCode,
