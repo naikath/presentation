@@ -31,6 +31,12 @@ test('replaces default lang code with another', () => {
 	expect(getUrlPathWithLang(urls.default, 'es')).toBe(paths.es);
 });
 
-test('if empty remove lang code', () => {
+test('remove lang code if empty', () => {
 	expect(getUrlPathWithLang(urls.en, '')).toBe(paths.root);
+	expect(getUrlPathWithLang(urls.enSlash, '')).toBe(paths.root);
+	expect(getUrlPathWithLang(urls.default, '')).toBe(paths.root);
+});
+
+test('remove lang code if empty and in the middle of the url', () => {
+	expect(getUrlPathWithLang(`${urls.en}/path`, '')).toBe(`/path`);
 });
