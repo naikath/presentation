@@ -20,9 +20,10 @@ export const languages = {
 	es: 'Español',
 } as const;
 
-type LangCode = keyof typeof languages;
+export const defaultLangCode = 'en';
 
-export const defaultLang: LangCode = 'en';
+export type LangCode = keyof typeof languages;
+export type DefaultLangCode = typeof defaultLangCode;
 
 const langCodes = Object.keys(languages) as LangCode[];
 
@@ -62,12 +63,22 @@ setupPaths();
  */
 export function getLangFromUrl(url: URL | string): LangCode {
 	// asuming url path starts with /langCode
-	if (!(url instanceof URL)) {
-		url = new URL(url);
-	}
+	url = stringToUrlObject(url);
+
 	const [, lang] = url.pathname.split('/');
 	if (lang in languages) return lang as LangCode;
-	return defaultLang;
+	return defaultLangCode;
+}
+
+function stringToUrlObject(url: string | URL) {
+	if (!(url instanceof URL)) {
+		if (URL.canParse(url)) {
+			return new URL(url);
+		} else {
+			throw new Error('String must be parseable as url');
+		}
+	}
+	return url;
 }
 
 async function setDataObject(
@@ -89,28 +100,28 @@ async function setDataObject(
 		// if theres no file to be imported
 		// set the data to the default one
 		// console.log('file doesnt exists');
-		dataObj[langCode] = dataObj[defaultLang];
+		dataObj[langCode] = dataObj[defaultLangCode];
 		// console.log(`Data set`, dataObj[langCode]);
 		// and set the import path to the default one just in case
-		dataPaths[langCode] = dataPaths[defaultLang];
+		dataPaths[langCode] = dataPaths[defaultLangCode];
 	}
 }
 
-export async function getDescriptions(langCode: LangCode = defaultLang) {
+export async function getDescriptions(langCode: LangCode = defaultLangCode) {
 	if (!desriptionsData[langCode]) {
 		await setDataObject(langCode, desriptionsData, descriptionsPaths);
 	}
 	return desriptionsData[langCode];
 }
 
-export async function getUiData(langCode: LangCode = defaultLang) {
+export async function getUiData(langCode: LangCode = defaultLangCode) {
 	if (!uiData[langCode]) {
 		await setDataObject(langCode, uiData, uiPaths);
 	}
 	return uiData[langCode];
 }
 
-export async function getItemsData(langCode: LangCode = defaultLang) {
+export async function getItemsData(langCode: LangCode = defaultLangCode) {
 	if (!itemsData[langCode]) {
 		await setDataObject(langCode, itemsData, itemsPaths);
 	}
