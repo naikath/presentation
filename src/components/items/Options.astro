@@ -1,0 +1,65 @@
+---
+
+---
+
+<section class='options'>
+	<div class='options__content'>Options</div>
+	<button class='options__icon'> opt</button>
+</section>
+
+<style>
+	.options {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 1rem;
+	}
+
+	.options__icon {
+		display: grid;
+		position: relative;
+		place-content: center;
+		border: 2px solid white;
+		border-radius: 1rem;
+		background-color: hsla(0, 0%, 0%);
+		aspect-ratio: 1;
+
+		width: 3em;
+	}
+
+	.options__content {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background-color: hsla(0, 0%, 0%, 0.75);
+		width: 200px;
+		height: 500px;
+		--clip-size: 0%;
+		--duration-opacity: 1s;
+		opacity: 0;
+		clip-path: circle(var(--clip-size) at 100% 0%);
+		transition:
+			clip-path 0.5s ease-out,
+			opacity var(--duration-opacity) ease-out;
+		border-radius: 1rem;
+		padding: 3rem 0.5rem;
+	}
+
+	.options--show .options__content {
+		--clip-size: 150%;
+		--duration-opacity: 0.5s;
+		opacity: 1;
+	}
+</style>
+
+<script>
+	const options = {
+		element: document.querySelector('.options') as HTMLElement,
+		icon: document.querySelector('.options__icon') as HTMLElement,
+		content: document.querySelector('.options__content') as HTMLElement,
+	};
+
+	options.icon?.addEventListener('click', () => {
+		options.element.classList.toggle('options--show');
+	});
+</script>
