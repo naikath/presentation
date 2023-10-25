@@ -81,6 +81,8 @@ function stringToUrlObject(url: string | URL) {
 	return url;
 }
 
+export function getUrlPathWithLang(url: URL | string, newLangCode: LangCode) {}
+
 async function setDataObject(
 	langCode: LangCode,
 	dataObj: Record<LangCode, DataAny>,
