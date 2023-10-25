@@ -85,24 +85,38 @@ export function getUrlPathWithLang(url: URL | string, newLangCode: LangCode | ''
 	url = stringToUrlObject(url);
 	const currentLangCode = getLangFromUrl(url);
 	const currentPath = url.pathname;
-	const pathArray = currentPath.split('/');
 	let newPath: string[];
+	const pathArray = currentPath.split('/');
 	// '/' => ['', '']
 	// '/path' => ['', 'path']
 	// '/path/' => ['', 'path', '']
 	if (currentPath.endsWith('/')) pathArray.pop();
 	// Normalize so in every case we have to push a new element
 	// And not replace the last index in some of them
+	// '/' => ['']
+	// '/path' => ['', 'path']
+	// '/path/' => ['', 'path']
 
 	if (!pathArray.includes(currentLangCode)) {
 		// langCode is not present in the url
 		newPath = [...pathArray, newLangCode];
 		// append new langCode to the end
 	} else {
-		// replace it
-		newPath = pathArray.map(p => {
-			return p === currentLangCode ? newLangCode : p;
-		});
+		if (newLangCode === '') {
+			// remove it
+			newPath = pathArray.filter(p => {
+				return p !== currentLangCode;
+			});
+			if (newPath.length < 2) {
+				// it needs at least two elements to get the slash '/' back in the join()
+				newPath = ['', ''];
+			}
+		} else {
+			// replace it
+			newPath = pathArray.map(p => {
+				return p === currentLangCode ? newLangCode : p;
+			});
+		}
 	}
 
 	return newPath.join('/');
