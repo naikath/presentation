@@ -70,15 +70,18 @@ export function getLangFromUrl(url: URL | string): LangCode {
 	return defaultLangCode;
 }
 
-function stringToUrlObject(url: string | URL) {
-	if (!(url instanceof URL)) {
+function stringToUrlObject(url: string | URL): URL {
+	if (url instanceof URL) return url;
+	if ('canParse' in URL) {
 		if (URL.canParse(url)) {
 			return new URL(url);
 		} else {
 			throw new Error('String must be parseable as url');
 		}
 	}
-	return url;
+	// @ts-ignore
+	return new URL(url);
+	// TS gave errors of URL being type never because of the 'canParse' check
 }
 
 export function getUrlPathWithLang(url: URL | string, newLangCode: LangCode | '' = '') {
