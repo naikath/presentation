@@ -1,5 +1,6 @@
 ---
 import ItemLang from './ItemLang.astro';
+import IconGear from './IconGear.astro';
 ---
 
 <section class='options'>
@@ -7,7 +8,9 @@ import ItemLang from './ItemLang.astro';
 		<p>Options</p>
 		<ItemLang />
 	</div>
-	<button class='options__icon'> opt</button>
+	<button class='options__icon'>
+		<IconGear />
+	</button>
 </section>
 
 <style>
@@ -22,11 +25,24 @@ import ItemLang from './ItemLang.astro';
 		display: grid;
 		position: relative;
 		place-content: center;
+		transition:
+			color 0.15s,
+			background-color 0.15s;
 		border: 2px solid white;
 		border-radius: 1rem;
-		background-color: hsla(0, 0%, 0%);
+		background-color: black;
 		aspect-ratio: 1;
 		width: 3em;
+		color: white;
+	}
+
+	.options__icon:hover {
+		border-width: 4px;
+	}
+
+	.options__icon:active {
+		background-color: white;
+		color: black;
 	}
 
 	.options__content {
