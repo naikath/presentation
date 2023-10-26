@@ -5,8 +5,10 @@ import IconGear from './IconGear.astro';
 
 <section class='options'>
 	<div class='options__content'>
-		<p>Options</p>
+		<h2>Options</h2>
+		<hr class='title' />
 		<ItemLang />
+		<hr class='option' />
 	</div>
 	<button class='options__icon'>
 		<IconGear />
@@ -45,6 +47,25 @@ import IconGear from './IconGear.astro';
 		color: black;
 	}
 
+	h2 {
+		margin-bottom: 0.5em;
+		margin-left: 1em;
+	}
+
+	hr {
+		margin-block: 0.75em;
+		border-style: dashed;
+	}
+
+	hr.title {
+		width: 75%;
+	}
+
+	hr.option {
+		margin-inline: auto;
+		width: 90%;
+	}
+
 	.options__content {
 		position: absolute;
 		top: 0;
@@ -60,7 +81,7 @@ import IconGear from './IconGear.astro';
 			clip-path 0.5s ease-out,
 			opacity var(--duration-opacity) ease-out;
 		border-radius: 1rem;
-		padding: 3rem 0.5rem;
+		padding: 1rem 0.5rem;
 	}
 
 	.options--show .options__content {
