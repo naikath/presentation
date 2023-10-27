@@ -25,6 +25,7 @@ export type Item = {
 // Ui
 
 export type DataUi = {
+	subtitle: string;
 	description: string;
 	skills: Skills;
 };

@@ -1,4 +1,7 @@
 ---
+import { getUiData, getLangFromUrl } from '../utils/languages';
+const ui = await getUiData(getLangFromUrl(Astro.url));
+
 const image_id = "1FcxTXGXozGyGWSK70NukmZvOMo1kdcqT"
 const image_src = `https://drive.google.com/uc?export=view&id=${image_id}`
 ---
@@ -10,13 +13,16 @@ const image_src = `https://drive.google.com/uc?export=view&id=${image_id}`
 		width='200'
 		height='200'
 	/>
-	<h1>
-		<div>
-			<span>Mateo</span>
-			<span class='hide'>Nicolas</span>
-		</div>
-		<div>Campero</div>
-	</h1>
+	<hgroup>
+		<h1>
+			<div>
+				<span>Mateo</span>
+				<span class='hide'>Nicolas</span>
+			</div>
+			<div>Campero</div>
+		</h1>
+		<p>{ui.subtitle}</p>
+	</hgroup>
 </header>
 
 <style>
@@ -58,6 +64,10 @@ const image_src = `https://drive.google.com/uc?export=view&id=${image_id}`
 		opacity: 0;
 		z-index: -10;
 		user-select: none;
+	}
+
+	hgroup p {
+		margin-top: 1rem;
 	}
 
 	img {
