@@ -1,10 +1,22 @@
 ---
-import { Image } from 'astro:assets';
+const image_id = "1FcxTXGXozGyGWSK70NukmZvOMo1kdcqT"
+const image_src = `https://drive.google.com/uc?export=view&id=${image_id}`
 ---
 
 <header>
-	<Image src='/foxPlush.png' alt='Profile Picture' width='200' height='200' />
-	<h1>Title</h1>
+	<img
+		src=`${image_src}`
+		alt='Profile Picture'
+		width='200'
+		height='200'
+	/>
+	<h1>
+		<div>
+			<span>Mateo</span>
+			<span class='hide'>Nicolas</span>
+		</div>
+		<div>Campero</div>
+	</h1>
 </header>
 
 <style>
@@ -17,17 +29,52 @@ import { Image } from 'astro:assets';
 		--border-bottom-radius: 5rem 1rem;
 		border-bottom-right-radius: var(--border-bottom-radius);
 		border-bottom-left-radius: var(--border-bottom-radius);
+		padding: 1em 0;
+		font-size: 1.75rem;
 	}
 
 	h1 {
 		display: flex;
+		position: relative;
+		flex-direction: column;
 		flex-wrap: wrap;
+		isolation: isolate;
+	}
+
+	h1 span {
+		opacity: 1;
+		z-index: 10;
+		transition: opacity 1s;
+		user-select: auto;
+	}
+
+	h1 span:nth-child(2) {
+		position: absolute;
+		left: 50%;
+		translate: -50%;
+	}
+
+	h1 span.hide {
+		opacity: 0;
+		z-index: -10;
+		user-select: none;
 	}
 
 	img {
 		filter: drop-shadow(1px 1px 5px white);
+		border-radius: 50%;
 		aspect-ratio: 1;
-		height: 200px;
+		width: 275px;
 		object-fit: contain;
 	}
 </style>
+
+<script>
+	const names = document.querySelectorAll('h1 span') as NodeListOf<HTMLElement>;
+	let hide = true;
+	setTimeout(() => {
+		names[0].classList.toggle('hide', hide);
+		names[1].classList.toggle('hide', !hide);
+		hide = !hide;
+	}, 10000);
+</script>
