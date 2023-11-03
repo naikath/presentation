@@ -1,24 +1,24 @@
 ---
-
+import { languages } from '../../../utils/languages';
 ---
 
 <div class='card-lang'>
 	<h3>Lang</h3>
 	<form class='lang'>
-		<label>
-			<input
-				type='radio'
-				name='lang'
-				value='en'
-			/> English</label
-		>
-		<label>
-			<input
-				type='radio'
-				name='lang'
-				value='es'
-			/> Spanish</label
-		>
+		{
+			Object.entries(languages).map(([langCode, langName]) => {
+				return (
+					<label>
+						<input
+							type='radio'
+							name='lang'
+							value={langCode}
+						/>
+						{langName}
+					</label>
+				);
+			})
+		}
 		<a class='disabled'>Reload</a>
 	</form>
 </div>
@@ -38,6 +38,10 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 0.5em;
+	}
+
+	input {
+		margin-right: 0.3em;
 	}
 
 	a {
