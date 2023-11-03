@@ -1,14 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 
-type Skill = {
-	id: number;
-	img: string;
-	name: string;
-};
+import type { Item } from '../../../utils/languages/data.types';
 
 interface Props {
-	skill: Skill;
+	skill: Item;
 }
 
 const { skill } = Astro.props;
