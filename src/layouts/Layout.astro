@@ -1,9 +1,16 @@
 ---
+interface Props {
+	lang?: string;
+}
+
+const { lang } = Astro.props;
+const langCode = lang ?? 'en';
+
 const title = 'Presentation';
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang={langCode}>
 	<head>
 		<meta charset='UTF-8' />
 		<meta
