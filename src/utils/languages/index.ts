@@ -1,11 +1,5 @@
-export {
-	defaultLangCode,
-	getDescriptions,
-	getItemsData,
-	getLangFromUrl,
-	getUiData,
-	getUrlPathWithLang,
-	languages,
-} from './languages';
+export { defaultLangCode, languages } from './langCodes';
+export type { DefaultLangCode, LangCode } from './langCodes';
 
-export type { DefaultLangCode, LangCode } from './languages';
+export { getLangFromUrl, getUrlPathWithLang } from './url';
+export { getDescriptions, getItemsData, getUiData } from './getData';
