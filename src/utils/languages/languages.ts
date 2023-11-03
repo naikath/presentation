@@ -39,13 +39,13 @@ const uiPaths = {} as Record<LangCode, string>;
 
 function setupPaths() {
 	langCodes.forEach(langCode => {
-		itemsPaths[langCode] = `../data/skills/${langCode}/items.json`;
-		descriptionsPaths[langCode] = `../data/skills/${langCode}/descriptions.json`;
-		uiPaths[langCode] = `../data/skills/${langCode}/ui.json`;
+		itemsPaths[langCode] = `../../data/skills/${langCode}/items.json`;
+		descriptionsPaths[langCode] = `../../data/skills/${langCode}/descriptions.json`;
+		uiPaths[langCode] = `../../data/skills/${langCode}/ui.json`;
 	});
 }
 
-const dataFiles = import.meta.glob('./../data/skills/*/*.json', { import: 'default' });
+const dataFiles = import.meta.glob('../../data/skills/*/*.json', { import: 'default' });
 
 setupPaths();
 
