@@ -8,4 +8,4 @@ export const defaultLangCode = 'en';
 export type LangCode = keyof typeof languages;
 export type DefaultLangCode = typeof defaultLangCode;
 
-const langCodes = Object.keys(languages) as LangCode[];
+export const langCodes = Object.keys(languages) as LangCode[];

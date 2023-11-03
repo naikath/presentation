@@ -1,4 +1,4 @@
-export { defaultLangCode, languages } from './langCodes';
+export { defaultLangCode, langCodes, languages } from './langCodes';
 export type { DefaultLangCode, LangCode } from './langCodes';
 
 export { getLangFromUrl, getUrlPathWithLang } from './url';

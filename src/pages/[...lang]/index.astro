@@ -3,10 +3,10 @@
 
 import type { GetStaticPaths } from 'astro';
 
-import { languages } from '../../utils/languages';
+import { langCodes } from '../../utils/languages';
 
 export const getStaticPaths = (() => {
-	const staticPaths = Object.keys(languages).map(langCode => {
+	const staticPaths = langCodes.map(langCode => {
 		return { params: { lang: langCode } };
 	});
 

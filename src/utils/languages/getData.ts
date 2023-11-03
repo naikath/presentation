@@ -13,11 +13,9 @@ the data object values should point to the default ones
 
 */
 
-import { languages, defaultLangCode } from './langCodes';
+import { langCodes, defaultLangCode } from './langCodes';
 import type { LangCode } from './langCodes';
 import type { DataAny, DataDescriptions, DataItems, DataUi } from './data.types';
-
-const langCodes = Object.keys(languages) as LangCode[];
 
 // paths
 const descriptionsPaths = {} as Record<LangCode, string>;
