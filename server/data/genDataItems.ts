@@ -1,18 +1,11 @@
 import { writeFile, mkdir } from 'node:fs/promises';
 import { itemGroups, iconFolders, baseImgSrc } from './dataItems';
-
-type Item = {
-	id: number;
-	img: string;
-	name: string;
-};
-
-// [ [ ["name", "path/image"], ... ], ... ]
+import type { DataItems, Item } from '../../src/utils/languages/data.types';
 
 let id = 0;
 let folderIndex = -1;
 
-export const data: Item[] = [];
+export const data: DataItems = [];
 
 itemGroups.forEach(group => {
 	id += 100;
