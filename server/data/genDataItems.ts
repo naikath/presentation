@@ -1,3 +1,5 @@
+import { writeFile, mkdir } from 'node:fs/promises';
+
 type Item = {
 	id: number;
 	img: string;
@@ -61,3 +63,22 @@ itemGroups.forEach(group => {
 		data.push(itemObj);
 	});
 });
+
+const baseDir = '../../src/data/skills';
+const filename = 'items.json';
+
+const dirs = [new URL(`${baseDir}/en`, import.meta.url), new URL(`${baseDir}/es`, import.meta.url)];
+
+dirs.forEach(async dir => {
+	const createdDir = await mkdir(dir, { recursive: true });
+	if (createdDir) {
+		console.log(`Created directory ${createdDir}`);
+	}
+});
+
+const jsonData = JSON.stringify(data);
+
+await Promise.all([
+	writeFile(`${baseDir}/en/${filename}`, jsonData, 'utf8'),
+	writeFile(`${baseDir}/es/${filename}`, jsonData, 'utf8'),
+]);
