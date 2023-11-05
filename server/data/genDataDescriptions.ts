@@ -2,7 +2,8 @@
 // its just used to generate the JSON files used easily
 
 import { writeFile, mkdir } from 'node:fs/promises';
-import { data } from './data';
+import path from 'node:path';
+import { data } from './dataDescriptions';
 
 const jsonData = {
 	en: JSON.stringify(data.en),

@@ -1,5 +1,5 @@
 import { writeFile, mkdir } from 'node:fs/promises';
-import { itemGroups, iconFolders, baseImgSrc } from './items';
+import { itemGroups, iconFolders, baseImgSrc } from './dataItems';
 
 type Item = {
 	id: number;
