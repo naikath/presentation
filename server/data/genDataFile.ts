@@ -22,6 +22,6 @@ dirs.forEach(async dir => {
 });
 
 await Promise.all([
-	writeFile(`${baseDir}/en/${filename}`, jsonData.en, 'utf8'),
-	writeFile(`${baseDir}/es/${filename}`, jsonData.es, 'utf8'),
+	writeFile(new URL(`${baseDir}/en/${filename}`, import.meta.url), jsonData.en, 'utf8'),
+	writeFile(new URL(`${baseDir}/es/${filename}`, import.meta.url), jsonData.es, 'utf8'),
 ]);

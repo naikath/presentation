@@ -79,6 +79,6 @@ dirs.forEach(async dir => {
 const jsonData = JSON.stringify(data);
 
 await Promise.all([
-	writeFile(`${baseDir}/en/${filename}`, jsonData, 'utf8'),
-	writeFile(`${baseDir}/es/${filename}`, jsonData, 'utf8'),
+	writeFile(new URL(`${baseDir}/en/${filename}`, import.meta.url), jsonData, 'utf8'),
+	writeFile(new URL(`${baseDir}/es/${filename}`, import.meta.url), jsonData, 'utf8'),
 ]);
