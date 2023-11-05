@@ -1,4 +1,5 @@
 import { writeFile, mkdir } from 'node:fs/promises';
+import { itemGroups, iconFolders, baseImgSrc } from './items';
 
 type Item = {
 	id: number;
@@ -8,41 +9,6 @@ type Item = {
 
 // [ [ ["name", "path/image"], ... ], ... ]
 
-const itemGroups = [
-	[
-		['HTML', 'html.svg'],
-		['CSS', 'css.svg'],
-		['JavaScript', 'javascript.svg'],
-		['React', 'react.svg'],
-		['TailwindCSS', 'tailwindcss.svg'],
-		['Bootstrap', 'bootstrap.svg'],
-		['Astro', 'astro.svg'],
-	],
-	[
-		['NodeJS', 'nodejs.svg'],
-		['TypeScript', 'typescript.svg'],
-		['ExpressJS', 'expressjs.svg'],
-		['DrizzleORM', 'drizzleorm.svg'],
-		['Zod', 'zod.svg'],
-		['Vitest', 'vitest.svg'],
-	],
-	[
-		['Bash', 'bash.svg'],
-		['Linux', 'linux.svg'],
-		['SQLite', 'sqlite.svg'],
-		['MySQL', 'mysql.svg'],
-	],
-	[
-		['Git', 'git.svg'],
-		['GitHub', 'github.svg'],
-		['C', 'c.svg'],
-		['Arduino', 'arduino.svg'],
-	],
-];
-
-const iconFolders = ['web', 'js', 'server', 'other'];
-
-const baseImgSrc = '/icons';
 let id = 0;
 let folderIndex = -1;
 
