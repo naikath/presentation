@@ -23,21 +23,27 @@ itemGroups.forEach(group => {
 	});
 });
 
+// Writing Files
+
+const jsonData = JSON.stringify(data);
+
+// Writing Files
+
 const baseDir = '../../src/data/skills';
 const filename = 'items.json';
 
 const dirs = [new URL(`${baseDir}/en`, import.meta.url), new URL(`${baseDir}/es`, import.meta.url)];
 
-dirs.forEach(async dir => {
-	const createdDir = await mkdir(dir, { recursive: true });
-	if (createdDir) {
-		console.log(`Created directory ${createdDir}`);
-	}
-});
+export async function writeFiles() {
+	dirs.forEach(async dir => {
+		const createdDir = await mkdir(dir, { recursive: true });
+		if (createdDir) {
+			console.log(`Created directory ${createdDir}`);
+		}
+	});
 
-const jsonData = JSON.stringify(data);
-
-await Promise.all([
-	writeFile(new URL(`${baseDir}/en/${filename}`, import.meta.url), jsonData, 'utf8'),
-	writeFile(new URL(`${baseDir}/es/${filename}`, import.meta.url), jsonData, 'utf8'),
-]);
+	await Promise.all([
+		writeFile(new URL(`${baseDir}/en/${filename}`, import.meta.url), jsonData, 'utf8'),
+		writeFile(new URL(`${baseDir}/es/${filename}`, import.meta.url), jsonData, 'utf8'),
+	]);
+}
