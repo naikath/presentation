@@ -1,12 +1,8 @@
-type Data = {
-	id: number;
-	definition: string;
-	description: string;
-};
+import type { DataDescriptions } from '../../src/utils/languages/data.types';
 
 type DataLangs = {
-	en: Data[];
-	es: Data[];
+	en: DataDescriptions;
+	es: DataDescriptions;
 };
 
 export const data: DataLangs = {

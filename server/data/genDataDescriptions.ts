@@ -10,19 +10,32 @@ const jsonData = {
 	es: JSON.stringify(data.es),
 };
 
-const baseDir = '../../src/data/skills';
-const filename = 'descriptions.json';
+// Writing Files
 
+const baseDir = '../../src/data/skills';
 const dirs = [new URL(`${baseDir}/en`, import.meta.url), new URL(`${baseDir}/es`, import.meta.url)];
 
-dirs.forEach(async dir => {
-	const createdDir = await mkdir(dir, { recursive: true });
-	if (createdDir) {
-		console.log(`Created directory ${createdDir}`);
-	}
-});
+const filename = 'descriptions.json';
+const filenames = [
+	new URL(`${baseDir}/en/${filename}`, import.meta.url),
+	new URL(`${baseDir}/es/${filename}`, import.meta.url),
+];
 
-await Promise.all([
-	writeFile(new URL(`${baseDir}/en/${filename}`, import.meta.url), jsonData.en, 'utf8'),
-	writeFile(new URL(`${baseDir}/es/${filename}`, import.meta.url), jsonData.es, 'utf8'),
-]);
+export async function writeFiles() {
+	dirs.forEach(async dir => {
+		const createdDir = await mkdir(dir, { recursive: true });
+		if (createdDir) {
+			console.log(`Created directory ${createdDir}`);
+		}
+	});
+
+	await Promise.all([
+		writeFile(filenames[0], jsonData.en, 'utf8'),
+		writeFile(filenames[1], jsonData.es, 'utf8'),
+	]);
+
+	filenames.forEach(file => {
+		const relPathToFile = path.relative(process.cwd(), decodeURIComponent(file.pathname));
+		console.log(`Wrote to ${relPathToFile}`);
+	});
+}

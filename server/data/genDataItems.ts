@@ -1,50 +1,61 @@
 import { writeFile, mkdir } from 'node:fs/promises';
-import { itemGroups, iconFolders, baseImgSrc } from './dataItems';
+import path from 'node:path';
+import { itemGroups, basePath } from './dataItems';
+import type { DataItems, ItemGroup, Item } from '../../src/utils/languages/data.types';
 
-type Item = {
-	id: number;
-	img: string;
-	name: string;
-};
+export const data: DataItems = [];
 
-// [ [ ["name", "path/image"], ... ], ... ]
+let itemId = 0;
 
-let id = 0;
-let folderIndex = -1;
+itemGroups.forEach(({ groupName, groupPath, groupItems }) => {
+	itemId = itemId + 100 - (itemId % 100);
+	// add 100 setting last two numbers to 0
 
-export const data: Item[] = [];
+	const newItemGroup: ItemGroup = { group: groupName, items: [] };
 
-itemGroups.forEach(group => {
-	id += 100;
-	id -= id % 100; // remove last two numbers
-	folderIndex += 1;
-	group.forEach(([itemName, itemImgSrc]) => {
-		id += 1;
-		const folder = iconFolders[folderIndex];
-		const itemObj: Item = {
-			id,
+	groupItems.forEach(([itemName, itemPath]) => {
+		itemId += 1;
+
+		const newItem: Item = {
+			id: itemId,
 			name: itemName,
-			img: `${baseImgSrc}/${folder}/${itemImgSrc}`,
+			img: `${basePath}/${groupPath}/${itemPath}`,
 		};
-		data.push(itemObj);
+
+		newItemGroup.items.push(newItem);
 	});
-});
 
-const baseDir = '../../src/data/skills';
-const filename = 'items.json';
-
-const dirs = [new URL(`${baseDir}/en`, import.meta.url), new URL(`${baseDir}/es`, import.meta.url)];
-
-dirs.forEach(async dir => {
-	const createdDir = await mkdir(dir, { recursive: true });
-	if (createdDir) {
-		console.log(`Created directory ${createdDir}`);
-	}
+	data.push(newItemGroup);
 });
 
 const jsonData = JSON.stringify(data);
 
-await Promise.all([
-	writeFile(new URL(`${baseDir}/en/${filename}`, import.meta.url), jsonData, 'utf8'),
-	writeFile(new URL(`${baseDir}/es/${filename}`, import.meta.url), jsonData, 'utf8'),
-]);
+// Writing Files
+
+const baseDir = '../../src/data/skills';
+const dirs = [new URL(`${baseDir}/en`, import.meta.url), new URL(`${baseDir}/es`, import.meta.url)];
+
+const filename = 'items.json';
+const filenames = [
+	new URL(`${baseDir}/en/${filename}`, import.meta.url),
+	new URL(`${baseDir}/es/${filename}`, import.meta.url),
+];
+
+export async function writeFiles() {
+	dirs.forEach(async dir => {
+		const createdDir = await mkdir(dir, { recursive: true });
+		if (createdDir) {
+			console.log(`Created directory ${createdDir}`);
+		}
+	});
+
+	await Promise.all([
+		writeFile(new URL(`${baseDir}/en/${filename}`, import.meta.url), jsonData, 'utf8'),
+		writeFile(new URL(`${baseDir}/es/${filename}`, import.meta.url), jsonData, 'utf8'),
+	]);
+
+	filenames.forEach(file => {
+		const relPathToFile = path.relative(process.cwd(), decodeURIComponent(file.pathname));
+		console.log(`Wrote to ${relPathToFile}`);
+	});
+}

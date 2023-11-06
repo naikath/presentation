@@ -6,7 +6,7 @@ export type DataAny = DataItems | DataUi | DataDescriptions;
 
 export type DataDescriptions = Description[];
 
-type Description = {
+export type Description = {
 	id: number;
 	definition: string;
 	description: string;
@@ -14,12 +14,17 @@ type Description = {
 
 // Items
 
-export type DataItems = Item[];
+export type DataItems = ItemGroup[];
+
+export type ItemGroup = {
+	group: string;
+	items: Item[];
+};
 
 export type Item = {
 	id: number;
-	img: string;
 	name: string;
+	img: string;
 };
 
 // Ui
@@ -30,7 +35,7 @@ export type DataUi = {
 	skills: Skills;
 };
 
-type Skills = {
+export type Skills = {
 	title: string;
 	display: string;
 	explanation: string;
