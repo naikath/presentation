@@ -9,8 +9,8 @@ const skillsItemsData = await getItemsData(getLangFromUrl(Astro.url));
 	<h3>JS</h3>
 	<div class='skills__icon-grid'>
 		{
-			skillsItemsData.map(skill => {
-				return <SkillsIcon skill={skill} />;
+			skillsItemsData.map(item => {
+				return <SkillsIcon item={item} />;
 			})
 		}
 	</div>

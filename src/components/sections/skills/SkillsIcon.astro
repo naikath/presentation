@@ -1,25 +1,24 @@
 ---
 import { Image } from 'astro:assets';
-
 import type { Item } from '../../../utils/languages/data.types';
 
 interface Props {
-	skill: Item;
+	item: Item;
 }
 
-const { skill } = Astro.props;
+const { item } = Astro.props;
 ---
 
 <div
 	class='skills__icon'
-	data-id={skill.id}
-	data-name={skill.name}
-	data-img={skill.img}
+	data-id={item.id}
+	data-name={item.name}
+	data-img={item.img}
 	tabindex='0'
 >
 	<Image
-		src={skill.img}
-		alt={`${skill.name} icon`}
+		src={item.img}
+		alt={`${item.name} icon`}
 		width='60'
 		height='60'
 	/>
