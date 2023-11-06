@@ -1,4 +1,5 @@
 import { writeFile, mkdir } from 'node:fs/promises';
+import path from 'node:path';
 import { itemGroups, basePath } from './dataItems';
 import type { DataItems, ItemGroup, Item } from '../../src/utils/languages/data.types';
 
@@ -32,9 +33,13 @@ const jsonData = JSON.stringify(data);
 // Writing Files
 
 const baseDir = '../../src/data/skills';
-const filename = 'items.json';
-
 const dirs = [new URL(`${baseDir}/en`, import.meta.url), new URL(`${baseDir}/es`, import.meta.url)];
+
+const filename = 'items.json';
+const filenames = [
+	new URL(`${baseDir}/en/${filename}`, import.meta.url),
+	new URL(`${baseDir}/es/${filename}`, import.meta.url),
+];
 
 export async function writeFiles() {
 	dirs.forEach(async dir => {
@@ -48,4 +53,9 @@ export async function writeFiles() {
 		writeFile(new URL(`${baseDir}/en/${filename}`, import.meta.url), jsonData, 'utf8'),
 		writeFile(new URL(`${baseDir}/es/${filename}`, import.meta.url), jsonData, 'utf8'),
 	]);
+
+	filenames.forEach(file => {
+		const relPathToFile = path.relative(process.cwd(), decodeURIComponent(file.pathname));
+		console.log(`Wrote to ${relPathToFile}`);
+	});
 }
