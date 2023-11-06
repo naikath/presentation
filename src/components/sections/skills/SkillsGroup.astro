@@ -1,15 +1,19 @@
 ---
 import SkillsIcon from './SkillsIcon.astro';
+import type { ItemGroup } from '../../../utils/languages/data.types';
 
-import { getItemsData, getLangFromUrl } from '../../../utils/languages';
-const skillsItemsData = await getItemsData(getLangFromUrl(Astro.url));
+interface Props {
+	itemGroup: ItemGroup;
+}
+
+const { itemGroup } = Astro.props;
 ---
 
 <section class='skills__group'>
-	<h3>JS</h3>
+	<h3>{itemGroup.group}</h3>
 	<div class='skills__icon-grid'>
 		{
-			skillsItemsData.map(item => {
+			itemGroup.items.map(item => {
 				return <SkillsIcon item={item} />;
 			})
 		}

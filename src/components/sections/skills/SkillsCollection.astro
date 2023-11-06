@@ -1,12 +1,18 @@
 ---
 import SkillsGroup from './SkillsGroup.astro';
-import { getUiData, getLangFromUrl } from '../../../utils/languages';
+import { getUiData, getLangFromUrl, getItemsData } from '../../../utils/languages';
+
 const ui = await getUiData(getLangFromUrl(Astro.url));
+const skillsItemsData = await getItemsData(getLangFromUrl(Astro.url));
 ---
 
 <div class='skills__collection'>
 	<h2>{ui.skills.title}</h2>
-	<SkillsGroup />
+	{
+		skillsItemsData.map(itemGroup => {
+			return <SkillsGroup itemGroup={itemGroup} />;
+		})
+	}
 </div>
 
 <style>
