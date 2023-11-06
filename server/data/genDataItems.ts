@@ -1,29 +1,31 @@
 import { writeFile, mkdir } from 'node:fs/promises';
-import { itemGroups, iconFolders, baseImgSrc } from './dataItems';
-import type { DataItems, Item } from '../../src/utils/languages/data.types';
-
-let id = 0;
-let folderIndex = -1;
+import { itemGroups, basePath } from './dataItems';
+import type { DataItems, ItemGroup, Item } from '../../src/utils/languages/data.types';
 
 export const data: DataItems = [];
 
-itemGroups.forEach(group => {
-	id += 100;
-	id -= id % 100; // remove last two numbers
-	folderIndex += 1;
-	group.forEach(([itemName, itemImgSrc]) => {
-		id += 1;
-		const folder = iconFolders[folderIndex];
-		const itemObj: Item = {
-			id,
-			name: itemName,
-			img: `${baseImgSrc}/${folder}/${itemImgSrc}`,
-		};
-		data.push(itemObj);
-	});
-});
+let itemId = 0;
 
-// Writing Files
+itemGroups.forEach(({ groupName, groupPath, groupItems }) => {
+	itemId = itemId + 100 - (itemId % 100);
+	// add 100 setting last two numbers to 0
+
+	const newItemGroup: ItemGroup = { group: groupName, items: [] };
+
+	groupItems.forEach(([itemName, itemPath]) => {
+		itemId += 1;
+
+		const newItem: Item = {
+			id: itemId,
+			name: itemName,
+			img: `${basePath}/${groupPath}/${itemPath}`,
+		};
+
+		newItemGroup.items.push(newItem);
+	});
+
+	data.push(newItemGroup);
+});
 
 const jsonData = JSON.stringify(data);
 
