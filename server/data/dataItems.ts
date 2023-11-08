@@ -4,7 +4,7 @@ type Data = {
 	groupItems: [string, string][];
 }[];
 
-export const basePath = '/icons';
+export const basePath = '/presentation/icons';
 
 export const itemGroups: Data = [
 	{
