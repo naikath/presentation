@@ -77,14 +77,25 @@ const title = 'Presentation';
 	}
 
 	html {
-		--color-bg: black;
 		--color-bg: white;
-		--color-font: black;
 		--color-font: white;
-		--color-bg-gradient: blueviolet;
-		--color-bg-gradient: hsl(348, 83%, 35%);
 		--color-bg-gradient: hsl(203, 74%, 48%);
 		--font-default: 'Roboto', sans-serif;
+	}
+
+	body[data-theme='cyan'] {
+		--color-font: white;
+		--color-bg-gradient: hsl(203, 74%, 48%);
+	}
+
+	body[data-theme='red'] {
+		--color-font: white;
+		--color-bg-gradient: hsl(348, 83%, 35%);
+	}
+
+	body[data-theme='violet'] {
+		--color-font: white;
+		--color-bg-gradient: blueviolet;
 	}
 
 	body {
