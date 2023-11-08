@@ -9,12 +9,11 @@ interface Props {
 const { item } = Astro.props;
 ---
 
-<div
+<button
 	class='skills__icon'
 	data-id={item.id}
 	data-name={item.name}
 	data-img={item.img}
-	tabindex='0'
 >
 	<Image
 		src={item.img}
@@ -22,24 +21,28 @@ const { item } = Astro.props;
 		width='60'
 		height='60'
 	/>
-</div>
+</button>
 
 <style>
 	.skills__icon {
 		border: 2px solid transparent;
 		border-radius: 1rem;
-		background-color: hsla(231, 48%, 45%, 0.6);
+		background: hsla(231, 48%, 45%, 0.6) radial-gradient(hsl(0, 0%, 100%, 0.5), 50%, transparent);
+		padding: 0.5rem;
 		aspect-ratio: 1;
 		user-select: none;
 	}
 
 	.skills__icon img {
+		filter: drop-shadow(0 0 1px hsla(0, 0%, 0%, 0.5));
+		border-radius: 0.5rem;
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
 	}
 
-	.skills__icon:focus-within {
-		border-color: red;
+	.skills__icon:focus {
+		box-shadow: 0 0 1rem darkblue inset;
+		border-color: transparent;
 	}
 </style>

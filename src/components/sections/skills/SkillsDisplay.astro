@@ -10,12 +10,14 @@ const ui = await getUiData(getLangFromUrl(Astro.url));
 	</article>
 	<article class='skills__description'>
 		<header>
-			<img
-				src=''
-				alt='Icon'
-				width='40'
-				height='40'
-			/>
+			<div class='icon'>
+				<img
+					src=''
+					alt='Icon'
+					width='40'
+					height='40'
+				/>
+			</div>
 			<h3 class='title'>Title</h3>
 		</header>
 		<p class='definition'>Short Definition</p>
@@ -62,6 +64,7 @@ const ui = await getUiData(getLangFromUrl(Astro.url));
 		background-color: var(--color-skills-display);
 		padding: 0.7rem;
 		width: 100%;
+		font-size: 1.5rem;
 		text-align: start;
 	}
 
@@ -95,8 +98,21 @@ const ui = await getUiData(getLangFromUrl(Astro.url));
 
 	/* DESCRIPTION TITLE */
 
+	.icon {
+		display: grid;
+		place-content: center;
+		border-radius: 25%;
+		background: radial-gradient(hsl(0, 0%, 100%, 0.75), 30%, transparent);
+		padding: 0.6rem;
+		aspect-ratio: 1;
+	}
+
 	img {
-		font-size: 0.8rem;
+		filter: drop-shadow(0 0 1px hsl(0, 0%, 0%, 0.8));
+		border-radius: 0.5rem;
+		width: 40px;
+		height: 40px;
+		object-fit: contain;
 	}
 
 	header {
@@ -104,6 +120,7 @@ const ui = await getUiData(getLangFromUrl(Astro.url));
 		flex-wrap: wrap;
 		align-items: center;
 		gap: 5%;
+		max-width: 85%;
 	}
 
 	/* DEFINITION SUBTITLE */
