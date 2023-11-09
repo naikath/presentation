@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { data } from '../server/data/genDataItems';
-import { basePath } from '../server/data/dataItems';
+import { data } from '../../server/data/genDataItems';
+import { basePath } from '../../server/data/dataItems';
 
 test('generated array', () => {
 	expect(Array.isArray(data)).toBeTruthy();

@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { getUrlPathWithLang } from '../src/utils/languages';
+import { getUrlPathWithLang } from '../../src/utils/languages';
 
 const origin = 'http://localhost:4321';
 
