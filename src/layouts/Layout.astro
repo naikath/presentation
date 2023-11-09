@@ -51,7 +51,7 @@ const title = 'Presentation';
 			href='/modern-normalize.min.css'
 		/>
 	</head>
-	<body>
+	<body class='theme-instant'>
 		<slot />
 	</body>
 </html>
@@ -114,3 +114,8 @@ const title = 'Presentation';
 		font-family: var(--font-default);
 	}
 </style>
+
+<script>
+	import { loadTheme } from '../utils/theme';
+	loadTheme();
+</script>
