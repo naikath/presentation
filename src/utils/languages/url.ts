@@ -1,3 +1,6 @@
+import { languages, defaultLangCode } from './langCodes';
+import type { LangCode } from './langCodes';
+
 /**
  * Get language code from an URL
  *
@@ -10,10 +13,6 @@
  * getLangFromUrl(Astro.url)
  * ```
  */
-
-import { languages, defaultLangCode } from './langCodes';
-import type { LangCode } from './langCodes';
-
 export function getLangFromUrl(url: URL | string): LangCode {
 	// asuming url path starts with /langCode
 	url = stringToUrlObject(url);
