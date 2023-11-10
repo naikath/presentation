@@ -36,6 +36,7 @@ Or at least viewable in all devices until I can polish the details
 			description: `
 I can easily find my way in the language and through pretty much any problem I encounter
 Experience dealing with its quirks, like implicit castings, and use of different data types like Set and Map
+
 I can use it to manipulate the DOM, get resources from a server, execute tasks at a set time, create events and more
 `,
 		},
@@ -62,7 +63,7 @@ I don't have much experience but I've been using it more and improving easily be
 			description: `
 Okay in this one I have really low experience
 I used very few times, but I was still capable of getting the website to look nice
-I wouldn't choose, since I like to customize almost everything, but I still understand it's column system, and it's components really help simplify stuff in multiple cases
+I wouldn't choose it, since I like to customize almost everything, but I still understand it's column system, and it's components really help simplify stuff in multiple cases
 So I would still be able to use it if I need to
 `,
 		},
@@ -91,6 +92,7 @@ Sometimes I even resolve completely unrelated problems by writing and executing 
 			description: `
 I usually include typescript in my projects every time I can, or failing that, JSDoc with TS declaration files
 I don't have very complex knowledge but I can use utility types, and create my own types and templates
+
 I could write my own config files but usually let the framework that I'm using to do it for me
 It's annoying at certain times, like wrong inferences, but still makes everything so much easier
 `,
@@ -138,8 +140,9 @@ specially when it involves mocking resources
 			description: `
 I don't have much experience but I often find myself creating my own scripts when I need them
 It's definitely not my favorite thing, but when a problem appears I can overcome it with a solution in just a few hours
+
 I'm not scared to jump into configurations of CLI programs like neovim or tmux
-I end up having lot of aliases or bash functions to use frequently
+And so I end up having lot of aliases or bash functions for frequent use
 `,
 		},
 		{
@@ -157,6 +160,7 @@ I got experience mainly with Debian based distros
 			definition: `SQL database stored in a file`,
 			description: `
 I've knowledge of the SQL language, and since I don't do really complex stuff, I'm not bothered by the limitations of this particular engine
+
 I query data, filter it, group it, and in cases transform it with functions, apart of using subqueries and common joins
 And by its simplicity to be included in a project is what I like to use the most
 `,
@@ -209,7 +213,8 @@ Which has really made easier the learning of new languages and concepts, since I
 			description: `
 During Highschool I made numerous small projects and exercises in arduino with its libraries
 It was my first experience with programming, where I learned the basics of C++
-I really enjoyed looking the documentation and learning something new I could use each day
+
+I really enjoyed looking at the documentation and learning something new I could use each day
 This helped me enter this world in a fun and interactive way
 `,
 		},
@@ -244,6 +249,7 @@ o al menos visualizable en todos los dispositivos hasta que pueda pulir los deta
 			description: `
 Tengo mucha facilidad para desenvolverme con el lenguaje y a través de casi cada problema que encuentre
 Experiencia con quirks de este, como casts implícitos, y uso de distintos tipos de datos como Set y Map
+
 Puedo usarlo para manipular el DOM, obtener recursos de un servidor, ejecutar tareas por un tiempo determinado, crear eventos y más
 `,
 		},
@@ -299,6 +305,7 @@ A veces incluso resuelvo problemas completamente no relacionados escribiendo y e
 			description: `
 Suelo usar typescript para mis proyectos cada vez que puedo, o en su defecto, JSDoc con declaraciones en archivos de TS
 No tengo conocimientos complejos pero puedo usar utility types, y crear mis propios types y templates
+
 Puedo escribir mi propia configuración pero suelo dejar que el framework que este usando lo haga por mi
 Es molesto por momentos, como con inferencias incorrectas, pero aún así hace todo mucho más fácil
 `,
@@ -344,8 +351,9 @@ Actualmente puedo hacer unit tests, pero no tengo mucha experiencia con las inte
 			description: `
 No tengo mucha experiencia pero a menudo termino creando mis propios scripts cuando los necesito
 Definitivamente no es mi cosa favorita, pero al encontrar un problema puedo salir con una solución sólo en unas horas
+
 Por eso tampoco me da miedo adentrarme en configuraciones de mis programas CLI como neovim o tmux
-Termino teniendo montones de alias y funciones de bash para uso frecuente
+Y entonces termino con montones de alias y funciones de bash de uso frecuente
 `,
 		},
 		{
@@ -363,6 +371,7 @@ Tengo experiencia principalmente con distros basadas en Debian
 			definition: `Base de datos SQL almacenada en un archivo`,
 			description: `
 Tengo conocimiento del lenguaje SQL, y al no hacer nada realmente complejo, no me molestan las limitaciones de este motor en particular
+
 Yo selecciono data, la filtro, agrupo, y en casos transformo con funciones, aparte de usar subqueries y joins comunes
 Y por su simpleza para ser incorporado en un proyecto es lo que más me gusta usar
 `,
@@ -415,7 +424,8 @@ Lo que me ha facilitado bastante el aprendizaje de nuevos lenguajes y conceptos,
 			description: `
 Durante la secundaria realicé numerosos proyectos pequeños y ejercicios en arduino usando sus librerías
 Fue mi primer experiencia con la programación, donde aprendí lo básico de C++
-Realmente disfruté leyendo la documentación y aprender algo nuevo que pudiera usar cada día
+
+Realmente disfrutaba leyendo la documentación y aprender algo nuevo que pudiera usar cada día
 Esto me ayudó a entrar a este mundo de una forma divertida e interactiva
 `,
 		},
