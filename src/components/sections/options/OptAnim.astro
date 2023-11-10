@@ -1,0 +1,85 @@
+---
+
+---
+
+<div class='opt-anim'>
+	<h3>Animation</h3>
+	<form class='anim'>
+		<p>Status:</p>
+		<p class='status'></p>
+		<button type='button'>Toggle</button>
+	</form>
+</div>
+
+<style>
+	.opt-anim {
+		font-size: 1.3rem;
+	}
+
+	h3 {
+		margin-bottom: 0.4em;
+		font-weight: 400;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5em;
+	}
+
+	input {
+		margin-right: 0.3em;
+	}
+
+	button {
+		align-self: center;
+		transition: opacity 0.5s;
+		border: solid 2px white;
+		border-radius: 4px;
+		background: hsl(271, 76%, 53%);
+		padding: 0.3em;
+		color: white;
+		font-size: 0.8em;
+		text-decoration: none;
+	}
+
+	button:hover:not(.disabled) {
+		background: hsl(271, 76%, 40%);
+	}
+
+	button.disabled {
+		opacity: 0.5;
+	}
+</style>
+
+<script>
+	const optionsElement = document.querySelector('.options') as HTMLElement;
+
+	const statusTextElement = document.querySelector('.opt-anim .status') as HTMLElement;
+	const button = document.querySelector('.opt-anim button') as HTMLButtonElement;
+
+	setTextAnimating(false);
+
+	function setTextAnimating(status: boolean) {
+		let text = '';
+		if (status) text = 'Complex';
+		else text = 'Simple';
+		statusTextElement.textContent = text;
+	}
+
+	const savedSetting = JSON.parse(window.localStorage.getItem('options') ?? '{}');
+	if (savedSetting.animate) {
+		const currentlyAnimating = optionsElement.classList.toggle(
+			'options--animate',
+			savedSetting.animate,
+		);
+		setTextAnimating(currentlyAnimating);
+	}
+
+	button.addEventListener('click', () => {
+		const currentlyAnimating = optionsElement.classList.toggle('options--animate');
+		window.localStorage.setItem('options', JSON.stringify({ animate: currentlyAnimating }));
+		setTextAnimating(currentlyAnimating);
+	});
+</script>

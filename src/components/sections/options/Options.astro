@@ -1,6 +1,7 @@
 ---
 import OptLang from './OptLang.astro';
 import OptTheme from './OptTheme.astro';
+import OptAnim from './OptAnim.astro';
 import IconGear from './IconGear.astro';
 ---
 
@@ -11,6 +12,8 @@ import IconGear from './IconGear.astro';
 		<OptLang />
 		<hr class='option' />
 		<OptTheme />
+		<hr class='option' />
+		<OptAnim />
 		<hr class='option' />
 	</div>
 	<button class='options__icon'>
@@ -76,7 +79,7 @@ import IconGear from './IconGear.astro';
 		backdrop-filter: blur(1.5rem);
 		background-color: hsla(0, 0%, 0%, 0.75);
 		width: 200px;
-		height: 500px;
+		height: 700px;
 		--duration-opacity: 0.5s;
 		opacity: 0;
 		transition: opacity var(--duration-opacity) ease-out;
