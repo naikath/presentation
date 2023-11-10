@@ -77,21 +77,29 @@ import IconGear from './IconGear.astro';
 		background-color: hsla(0, 0%, 0%, 0.75);
 		width: 200px;
 		height: 500px;
-		--clip-size: 0%;
-		--duration-opacity: 1s;
+		--duration-opacity: 0.5s;
 		opacity: 0;
-		clip-path: circle(var(--clip-size) at 100% 0%);
-		transition:
-			clip-path 0.5s ease-out,
-			opacity var(--duration-opacity) ease-out;
+		transition: opacity var(--duration-opacity) ease-out;
 		border-radius: 1rem;
 		padding: 1rem 1.5rem;
 	}
 
+	.options--animate .options__content {
+		--clip-size: 0%;
+		--duration-opacity: 1s;
+		clip-path: circle(var(--clip-size) at 100% 0%);
+		transition:
+			clip-path 0.5s ease-out,
+			opacity var(--duration-opacity) ease-out;
+	}
+
 	.options--show .options__content {
-		--clip-size: 150%;
 		--duration-opacity: 0.5s;
 		opacity: 1;
+	}
+
+	.options--show.options--animate .options__content {
+		--clip-size: 150%;
 	}
 </style>
 
