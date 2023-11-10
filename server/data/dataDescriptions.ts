@@ -45,7 +45,7 @@ I can use it to manipulate the DOM, get resources from a server, execute tasks a
 			description: `
 This is the first UI framework I'm learning
 I don't know everything yet but I like the use of components and how it manages state
-I'm little by little improving in the use of hooks and learning more about how to structure my projects		
+I'm little by little improving in the use of hooks and learning more about how to structure my projects
 `,
 		},
 		{
@@ -82,7 +82,7 @@ Also, being UI agnostic, I can start with this and then incorporate any library 
 			description: `
 I can setup my projects, manage asynchrony, import packages and modules
 I have some practice in Node built in packages like \`node:path\`, \`node:fs\` and even \`node:test\`
-Sometimes I even resolve completely unrelated problems by writing and executing a script with Node		
+Sometimes I even resolve completely unrelated problems by writing and executing a script with Node
 `,
 		},
 		{
@@ -92,7 +92,7 @@ Sometimes I even resolve completely unrelated problems by writing and executing 
 I usually include typescript in my projects every time I can, or failing that, JSDoc with TS declaration files
 I don't have very complex knowledge but I can use utility types, and create my own types and templates
 I could write my own config files but usually let the framework that I'm using to do it for me
-It's annoying at certain times, like wrong inferences, but still makes everything so much easier		
+It's annoying at certain times, like wrong inferences, but still makes everything so much easier
 `,
 		},
 		{
@@ -253,7 +253,7 @@ Puedo usarlo para manipular el DOM, obtener recursos de un servidor, ejecutar ta
 			description: `
 Este es el primer framework UI que estoy aprendiendo
 No se todo aún pero me gusta el uso de componentes y como maneja el estado
-Estoy poco a poco mejorando en el uso de hooks y aprendiendo más sobre como estructurar mis proyectos	
+Estoy poco a poco mejorando en el uso de hooks y aprendiendo más sobre como estructurar mis proyectos
 `,
 		},
 		{
@@ -300,7 +300,7 @@ A veces incluso resuelvo problemas completamente no relacionados escribiendo y e
 Suelo usar typescript para mis proyectos cada vez que puedo, o en su defecto, JSDoc con declaraciones en archivos de TS
 No tengo conocimientos complejos pero puedo usar utility types, y crear mis propios types y templates
 Puedo escribir mi propia configuración pero suelo dejar que el framework que este usando lo haga por mi
-Es molesto por momentos, como con inferencias incorrectas, pero aún así hace todo mucho más fácil	
+Es molesto por momentos, como con inferencias incorrectas, pero aún así hace todo mucho más fácil
 `,
 		},
 		{
