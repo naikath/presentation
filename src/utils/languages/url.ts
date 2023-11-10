@@ -16,8 +16,8 @@ import type { LangCode } from './langCodes';
 export function getLangFromUrl(url: URL | string): LangCode {
 	// asuming url path starts with /langCode
 	url = stringToUrlObject(url);
-
-	const [, lang] = url.pathname.split('/');
+	// /basePath/lang => [ '', 'basePath', 'lang' ]
+	const [, , lang] = url.pathname.split('/');
 	if (lang in languages) return lang as LangCode;
 	return defaultLangCode;
 }
