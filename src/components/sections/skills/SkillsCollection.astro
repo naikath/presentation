@@ -76,8 +76,8 @@ const skillsItemsData = await getItemsData(getLangFromUrl(Astro.url));
 			img.alt = `${dataName} icon`;
 			title.innerText = `${dataName}`;
 
-			content.innerText = getItemData(dataId, 'description') ?? '';
 			definition.innerText = getItemData(dataId, 'definition') ?? '';
+			content.innerHTML = getItemData(dataId, 'description') ?? '';
 
 			skillsShowDescription(true);
 		});
