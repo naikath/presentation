@@ -37,7 +37,7 @@ export const itemGroups: Data = [
 		groupPath: 'server',
 		groupItems: [
 			['Bash', 'bash.svg'],
-			['Linux', 'linux.svg'],
+			['Linux', 'linux.webp'],
 			['SQLite', 'sqlite.svg'],
 			['MySQL', 'mysql.svg'],
 		],
