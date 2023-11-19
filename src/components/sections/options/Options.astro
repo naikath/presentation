@@ -1,6 +1,7 @@
 ---
 import OptLang from './OptLang.astro';
 import OptTheme from './OptTheme.astro';
+import OptAnim from './OptAnim.astro';
 import IconGear from './IconGear.astro';
 ---
 
@@ -11,6 +12,8 @@ import IconGear from './IconGear.astro';
 		<OptLang />
 		<hr class='option' />
 		<OptTheme />
+		<hr class='option' />
+		<OptAnim />
 		<hr class='option' />
 	</div>
 	<button class='options__icon'>
@@ -23,6 +26,7 @@ import IconGear from './IconGear.astro';
 		position: absolute;
 		top: 0;
 		right: 0;
+		z-index: 20;
 		margin: 1rem;
 	}
 
@@ -76,22 +80,49 @@ import IconGear from './IconGear.astro';
 		backdrop-filter: blur(1.5rem);
 		background-color: hsla(0, 0%, 0%, 0.75);
 		width: 200px;
-		height: 500px;
+		height: 700px;
+		/*
+			clip-path will still be used when not animating
+			to avoid this sidebar overlapping other elements 
+			but wont be shown, so its time and delays
+			will be longer than the actual transition used 
+		*/
+		/* properties from showing to hiding */
+		/* when not animating */
 		--clip-size: 0%;
-		--duration-opacity: 1s;
+		--duration-opacity: 0.5s;
+		--duration-clip-path: 0s;
+		--delay-clip-path: 0.5s; /* should equal the duration of opacity */
 		opacity: 0;
 		clip-path: circle(var(--clip-size) at 100% 0%);
 		transition:
-			clip-path 0.5s ease-out,
-			opacity var(--duration-opacity) ease-out;
+			opacity var(--duration-opacity) ease-out,
+			clip-path var(--duration-clip-path) ease-out var(--delay-clip-path);
 		border-radius: 1rem;
 		padding: 1rem 1.5rem;
 	}
 
+	.options--animate .options__content {
+		/* properties from showing to hiding */
+		/* when animating */
+		--duration-opacity: 1s;
+		--duration-clip-path: 0.5s;
+		--delay-clip-path: 0s;
+	}
+
 	.options--show .options__content {
+		/* properties from hiding to showing */
+		/* when not animating */
 		--clip-size: 150%;
 		--duration-opacity: 0.5s;
+		--delay-clip-path: 0s;
 		opacity: 1;
+	}
+
+	.options--show.options--animate .options__content {
+		/* properties from hiding to showing */
+		/* when animating */
+		--duration-opacity: 1s;
 	}
 </style>
 

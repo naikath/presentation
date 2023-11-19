@@ -3,16 +3,16 @@
 
 import { writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
+import MarkdownIt from 'markdown-it';
 import { data } from './dataDescriptions';
 
 const dataLangCodes = Object.keys(data) as ('en' | 'es')[];
+const md = new MarkdownIt({ breaks: true });
 
 dataLangCodes.forEach(langCode => {
 	data[langCode].forEach(item => {
 		let { description } = item;
-		if (description.at(0) === '\n') description = description.slice(1);
-		if (description.at(-1) === '\n') description = description.slice(0, -1);
-		item.description = description;
+		item.description = md.render(description);
 	});
 });
 
