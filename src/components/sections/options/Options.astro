@@ -26,6 +26,7 @@ import IconGear from './IconGear.astro';
 		position: absolute;
 		top: 0;
 		right: 0;
+		z-index: 20;
 		margin: 1rem;
 	}
 
@@ -80,29 +81,48 @@ import IconGear from './IconGear.astro';
 		background-color: hsla(0, 0%, 0%, 0.75);
 		width: 200px;
 		height: 700px;
+		/*
+			clip-path will still be used when not animating
+			to avoid this sidebar overlapping other elements 
+			but wont be shown, so its time and delays
+			will be longer than the actual transition used 
+		*/
+		/* properties from showing to hiding */
+		/* when not animating */
+		--clip-size: 0%;
 		--duration-opacity: 0.5s;
+		--duration-clip-path: 0s;
+		--delay-clip-path: 0.5s; /* should equal the duration of opacity */
 		opacity: 0;
-		transition: opacity var(--duration-opacity) ease-out;
+		clip-path: circle(var(--clip-size) at 100% 0%);
+		transition:
+			opacity var(--duration-opacity) ease-out,
+			clip-path var(--duration-clip-path) ease-out var(--delay-clip-path);
 		border-radius: 1rem;
 		padding: 1rem 1.5rem;
 	}
 
 	.options--animate .options__content {
-		--clip-size: 0%;
+		/* properties from showing to hiding */
+		/* when animating */
 		--duration-opacity: 1s;
-		clip-path: circle(var(--clip-size) at 100% 0%);
-		transition:
-			clip-path 0.5s ease-out,
-			opacity var(--duration-opacity) ease-out;
+		--duration-clip-path: 0.5s;
+		--delay-clip-path: 0s;
 	}
 
 	.options--show .options__content {
+		/* properties from hiding to showing */
+		/* when not animating */
+		--clip-size: 150%;
 		--duration-opacity: 0.5s;
+		--delay-clip-path: 0s;
 		opacity: 1;
 	}
 
 	.options--show.options--animate .options__content {
-		--clip-size: 150%;
+		/* properties from hiding to showing */
+		/* when animating */
+		--duration-opacity: 1s;
 	}
 </style>
 

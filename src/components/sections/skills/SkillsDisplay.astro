@@ -78,12 +78,14 @@ const ui = await getUiData(getLangFromUrl(Astro.url));
 		& .skills__explain {
 			position: relative;
 			opacity: 1;
+			z-index: 10;
 		}
 
 		& .skills__description {
 			position: absolute;
 			top: 0;
 			opacity: 0;
+			z-index: 0;
 		}
 	}
 
@@ -92,11 +94,13 @@ const ui = await getUiData(getLangFromUrl(Astro.url));
 			position: absolute;
 			top: 0;
 			opacity: 0;
+			z-index: 0;
 		}
 
 		& .skills__description {
 			position: relative;
 			opacity: 1;
+			z-index: 10;
 		}
 	}
 

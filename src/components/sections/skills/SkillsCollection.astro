@@ -53,8 +53,8 @@ const skillsItemsData = await getItemsData(getLangFromUrl(Astro.url));
 
 	skillsDescription.button.addEventListener('click', () => {
 		skillsShowDescription(false);
-		skillsDescription.content.innerText = '';
 		skillsDescription.definition.innerText = '';
+		skillsDescription.content.innerHTML = '<br/>';
 	});
 
 	type ItemId = number | string | undefined;
